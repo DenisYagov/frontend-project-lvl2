@@ -1,6 +1,6 @@
 install: #клонирование репозитория
 	npm ci
 gendiff: #run project
-	node bin/gendiff
+	node bin/gendiff.js
 lint:
 	npx eslint .
