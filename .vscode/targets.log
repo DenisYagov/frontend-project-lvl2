@@ -2,29 +2,18 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.2.1
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
- 
-# Make data base, printed on Thu Jun 16 09:08:05 2022
- 
+# Make data base, printed on Fri Jun 17 09:25:45 2022
 
 # Variables
- 
 
- 
 # 'override' directive
 GNUMAKEFLAGS := 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -62,7 +51,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:38602
+JOURNAL_STREAM = 8:38466
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -104,7 +93,7 @@ PATH = /home/bigdog/.npm-global/bin:/home/bigdog/.npm-global/bin:/usr/local/sbin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1383,unix/Bigdog-ASUS:/tmp/.ICE-unix/1383
+SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1384,unix/Bigdog-ASUS:/tmp/.ICE-unix/1384
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -122,7 +111,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = bb1fc7b7992847f181c986f06bc6cbc1
+INVOCATION_ID = d0013924f9fd4f54b6731c0089ad3899
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -134,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3520
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3649
 # automatic
 %F = $(notdir $%)
 # environment
@@ -142,14 +131,13 @@ DISPLAY = :0
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
- 
 SNAP_INSTANCE_KEY = 
 # environment
 PWD = /home/bigdog/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1345
+SSH_AGENT_PID = 1347
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -162,7 +150,6 @@ HOME = /home/bigdog
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
- 
 # environment
 VSCODE_CODE_CACHE_PATH = /home/bigdog/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
@@ -202,7 +189,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-3e06e06b-f5fc-4af4-bd16-6d5233ef2a4a.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c442f459-8407-46b5-ae4e-e22218e30b44.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -259,7 +246,6 @@ LC_MEASUREMENT = ru_RU.UTF-8
 SNAP_NAME = code
 # environment
 LC_ALL = C
- 
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # automatic
@@ -283,7 +269,7 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3564
+VSCODE_PID = 3695
 # variable set hash-table stats:
 # Load=129/1024=13%, Rehash=0, Collisions=23/154=15%
 
@@ -293,9 +279,10 @@ VSCODE_PID = 3564
 
 # Directories
 
-# . (device 2054, inode 13111795): 14 files, no impossibilities.
+# . (device 2054, inode 13111795): 15 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+ 
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -313,7 +300,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 12:26:32.970305
+#  Last modified 2022-06-16 09:09:22.130499758
 #  File has been updated.
 #  Successfully updated.
 
@@ -335,7 +322,7 @@ gendiff:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 4):
-	node bin/gendiff
+	node bin/gendiff.js
 
 install:
 #  Implicit rule search has not been done.
@@ -352,12 +339,12 @@ install:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 195 B / avg = 8 B
-# current buf: size = 8162 B / used = 195 B / count = 22 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 23 / storage = 206 B / avg = 8 B
+# current buf: size = 8162 B / used = 206 B / count = 23 / avg = 8 B
 
-# strcache performance: lookups = 29 / hit rate = 24%
+# strcache performance: lookups = 30 / hit rate = 23%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=1/29=3%
-# Finished Make data base on Thu Jun 16 09:08:05 2022
+# Load=23/8192=0%, Rehash=0, Collisions=1/30=3%
+# Finished Make data base on Fri Jun 17 09:25:45 2022
 
  

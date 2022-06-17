@@ -2,8 +2,6 @@
 
 import flatCompare from '../src/coreComparator.js';
 
-import { readFileSync } from 'fs';
-
 import { Command } from 'commander';
 const program = new Command();
 
@@ -18,7 +16,9 @@ program
 
   .action((fileName1, lineOptions, rawData) => {
 
+  // compare files based on input raw data
   const outStr = flatCompare(rawData);
+  // in case no input files return null
   (outStr.length !== 0) ? console.log(outStr) : null;
 
   })
