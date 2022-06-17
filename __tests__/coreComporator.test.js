@@ -1,6 +1,6 @@
 import flatCompare from '../src/coreComparator.js';
 import { readFileSync } from 'fs';
-import { test, expect } from 'jest';
+//import { test, expect } from 'jest';
 
 
 const f1 = '__fixtures__/file1.json';
