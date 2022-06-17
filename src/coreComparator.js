@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-import  path from 'path';
 
 const isKeyPresent = (key, obj) => {
   // checking the presentanse of key in object by filtering
@@ -32,7 +31,6 @@ const findCommon = (obj1, obj2, inputArray) => {
 const findUniue = (obj1, obj2, inputArray, firstSym = '-') => {
   //checking the keys in obj1 that absent in obj2
   return Object.keys(obj1).reduce((acc, key) => {
-    const tempObj2 = Object.keys(obj2).filter((value) => (value === key));
     if (!isKeyPresent(key, obj2)){
       // in case obj1 has unique key
       acc.push([firstSym, `${key}`, obj1[key]]);
@@ -66,7 +64,7 @@ const outStr = outArr.join(String.fromCharCode(10));
 
 return outStr;
 } else { 
-  return '' };
+  return '' }
 }
 
 export default flatCompare;
