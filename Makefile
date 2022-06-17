@@ -3,7 +3,7 @@ install: #клонирование репозитория
 gendiff: #run project
 	node bin/gendiff.js
 lint:
-	npx eslint .
+	npx eslint src/ bin/
 test_install:
 	npm i jest
 test: 
