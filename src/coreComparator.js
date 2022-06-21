@@ -10,7 +10,7 @@ const isKeyPresent = (key, obj) => {
 
 const findCommon = (obj1, obj2, inputArray) => {
   // checking the same keys in the objects
-  const outArray = Object.keys(obj1).reduce((acc, key) => {
+  return Object.keys(obj1).reduce((acc, key) => {
     if (isKeyPresent(key, obj2)) {
       // in case obj1 and obj2 has same key
       if (obj1[key] === obj2[key] ) {
@@ -23,9 +23,7 @@ const findCommon = (obj1, obj2, inputArray) => {
       }
     }
     return acc;
-  }, inputArray)
-
-  return outArray;
+  }, inputArray);
 }
 
 const findUniue = (obj1, obj2, inputArray, firstSym = '-') => {
