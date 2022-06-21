@@ -8,19 +8,26 @@ const isKeyPresent = (key, obj) => {
     return false }
 }
 
+const pushDiffValueObject = (key, val1, val2, arr) => {
+  arr.push(['-', key, val1]);
+  arr.push(['+', key, val2]);
+}
+
 const findCommon = (obj1, obj2, inputArray) => {
   // checking the same keys in the objects
   return Object.keys(obj1).reduce((acc, key) => {
     if (isKeyPresent(key, obj2)) {
       // in case obj1 and obj2 has same key
-      if (obj1[key] === obj2[key] ) {
+      /*if (obj1[key] === obj2[key] ) {
         // keys value in obj1 and obj2 has same value
         acc.push([' ', `${key}`, obj1[key]]);
       } else {
         // keys value in obj1 and obj2 has different value
-        acc.push(['-', `${key}`, obj1[key]]);
+        /*acc.push(['-', `${key}`, obj1[key]]);
         acc.push(['+', `${key}`, obj2[key]]);
-      }
+        pushDiffValueObject(`${key}`, obj1[key], obj2[key], acc)
+      }*/
+      (obj1[key] === obj2[key]) ? acc.push([' ', `${key}`, obj1[key]]) : pushDiffValueObject(`${key}`, obj1[key], obj2[key], acc)
     }
     return acc;
   }, inputArray);
