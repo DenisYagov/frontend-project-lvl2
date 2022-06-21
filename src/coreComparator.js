@@ -46,6 +46,10 @@ const findUniue = (obj1, obj2, inputArray, firstSym = '-') => {
 
 const getObjFromFile = (file) => {return JSON.parse(readFileSync(file).toString());}
 
+const generateRezultArray = (obj1, obj2) => {
+  return findCommon(obj1, obj2, findUniue(obj1, obj2, findUniue(obj2, obj1, [], '+')));
+}
+
 const flatCompare = (rawData) => {
 // check if all data presented
 if (rawData.args[0] === undefined) return '';
@@ -53,9 +57,7 @@ if (rawData.args[0] === undefined) return '';
 const obj1 = getObjFromFile(rawData.args[0]);
 const obj2 = getObjFromFile(rawData.args[1]);
 // make out array
-const uniqArrFirst = findUniue(obj2, obj1, [], '+')
-const uniqArr = findUniue(obj1, obj2, uniqArrFirst);
-const outArr = findCommon(obj1, obj2, uniqArr)
+const outArr = generateRezultArray(obj1, obj2)
 // sort array by names
 .sort((a, b) => {return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))})
 //make string from array element, that splited to 3 strings
