@@ -37,27 +37,25 @@ const findUniue = (obj1, obj2, inputArray, firstSym = '-') => {
   }, inputArray)
 }
 
+const getObjFromFile = (file) => {return JSON.parse(readFileSync(file).toString());}
 
 const flatCompare = (rawData) => {
+// check if all data presented
+if (rawData.args[0] === undefined) return '';
 
-if (rawData.args[0] !== undefined) {
-const file1 = readFileSync(rawData.args[0]).toString();
-const file2 = readFileSync(rawData.args[1]).toString();
-
-const obj1 = JSON.parse(file1);
-const obj2 = JSON.parse(file2);
-
+//make objects
+const obj1 = getObjFromFile(rawData.args[0]);
+const obj2 = getObjFromFile(rawData.args[1]);
+// make out array
 const outArr = findCommon(obj1, obj2, findUniue(obj1, obj2, findUniue(obj2, obj1, [], '+')))
+// sort array by names
 .sort((a, b) => {return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))})
+//make string from array element, that splited to 3 strings
 .map((cell) => {
   return cell.join(' ');
 });
-
-const outStr = outArr.join(String.fromCharCode(10));
-
-return outStr;
-} else { 
-  return '' }
+// make string from array by join via 'enter' symbal
+return outArr.join(String.fromCharCode(10));
 }
 
 export default flatCompare;
