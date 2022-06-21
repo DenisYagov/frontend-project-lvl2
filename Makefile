@@ -1,4 +1,7 @@
-install: #клонирование репозитория
+
+install: install-deps
+	npx simple-git-hooks
+install-deps: #клонирование репозитория
 	npm ci
 gendiff: #run project
 	node bin/gendiff.js

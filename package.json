@@ -28,9 +28,8 @@
   },
   "homepage": "https://github.com/DenisYagov/frontend-project-lvl2#readme",
   "dependencies": {
-    "commander": "^9.3.0",
-    "fs": "^0.0.1-security"
-  },
+    "commander": "^9.3.0"
+ },
   "devDependencies": {
     "eslint": "^8.17.0",
     "jest": "^28.1.1"

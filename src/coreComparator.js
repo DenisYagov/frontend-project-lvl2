@@ -46,10 +46,6 @@ if (rawData.args[0] !== undefined) {
 const file1 = readFileSync(rawData.args[0]).toString();
 const file2 = readFileSync(rawData.args[1]).toString();
 
-//console.log('file1 = ', rawData.args[0]);
-//console.log('path.isAbsolute(file1) = ', path.isAbsolute(rawData.args[0]));
-//console.log('file2 = ', obj2); 
-
 const obj1 = JSON.parse(file1);
 const obj2 = JSON.parse(file2);
 
@@ -57,7 +53,6 @@ const outArr = findCommon(obj1, obj2, findUniue(obj1, obj2, findUniue(obj2, obj1
 .sort((a, b) => {return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))})
 .map((cell) => {
   return cell.join(' ');
-  //cell.push(rez);
 });
 
 const outStr = outArr.join(String.fromCharCode(10));
