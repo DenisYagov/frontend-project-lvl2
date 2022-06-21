@@ -42,12 +42,12 @@ const getObjFromFile = (file) => {return JSON.parse(readFileSync(file).toString(
 const flatCompare = (rawData) => {
 // check if all data presented
 if (rawData.args[0] === undefined) return '';
-
 //make objects
 const obj1 = getObjFromFile(rawData.args[0]);
 const obj2 = getObjFromFile(rawData.args[1]);
 // make out array
-const uniqArr = findUniue(obj1, obj2, findUniue(obj2, obj1, [], '+'));
+const uniqArrFirst = findUniue(obj2, obj1, [], '+')
+const uniqArr = findUniue(obj1, obj2, uniqArrFirst);
 const outArr = findCommon(obj1, obj2, uniqArr)
 // sort array by names
 .sort((a, b) => {return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))})
