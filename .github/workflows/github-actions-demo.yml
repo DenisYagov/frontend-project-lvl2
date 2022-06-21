@@ -1,3 +1,4 @@
+# Name of workflow
 name: GitHub Actions Demo
 
 # Trigger the workflow on push or pull request
@@ -34,11 +35,13 @@ jobs:
       - run: make install-deps
       - run: make test
       - run: make lint
-name: Test & publish code coverage
-   uses: paambaati/codeclimate-action@v3
-   # Add Code Climate secret key
-   env:
-     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-   with:
-     coverageCommand: make test-coverage
-     debug: true
+      # - name: Test & publish code coverage
+      #   # Publish code coverage on Code Climate
+      #   # https://github.com/paambaati/codeclimate-action
+      #   uses: paambaati/codeclimate-action@v3
+      #   # Add Code Climate secret key
+      #   env:
+      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      #   with:
+      #     coverageCommand: make test-coverage
+      #     debug: true
