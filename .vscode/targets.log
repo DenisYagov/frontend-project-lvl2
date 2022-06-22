@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 21 09:29:28 2022
+# Make data base, printed on Wed Jun 22 09:17:22 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:38872
+JOURNAL_STREAM = 8:38679
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,7 +77,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/99/usr/share/code/code
 # environment
-MANAGERPID = 1070
+MANAGERPID = 1052
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -93,7 +93,7 @@ PATH = /home/bigdog/.npm-global/bin:/home/bigdog/.npm-global/bin:/usr/local/sbin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1395,unix/Bigdog-ASUS:/tmp/.ICE-unix/1395
+SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1386,unix/Bigdog-ASUS:/tmp/.ICE-unix/1386
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +111,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 35ef8f72ed544d4cba6e3328e18fe4e4
+INVOCATION_ID = 7d17e6a5f00a418dbf69e9ecbe8bc4b0
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -123,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3645
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3406
 # automatic
 %F = $(notdir $%)
 # environment
@@ -137,7 +137,7 @@ PWD = /home/bigdog/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1356
+SSH_AGENT_PID = 1348
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -189,7 +189,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4a7f724b-7b70-4f26-8cee-894cfff907d8.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f5935639-1eae-43b8-9882-74177a9e2adb.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -269,7 +269,7 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3689
+VSCODE_PID = 3451
 # variable set hash-table stats:
 # Load=129/1024=13%, Rehash=0, Collisions=23/154=15%
 
@@ -279,15 +279,12 @@ VSCODE_PID = 3689
 
 # Directories
 
-# . (device 2054, inode 13111795): 18 files, no impossibilities.
+# . (device 2054, inode 13111795): 19 files, no impossibilities.
 
  
-# 18 files, no impossibilities in 1 directories.
- 
+# 19 files, no impossibilities in 1 directories.
 
- 
 # Implicit Rules
- 
 
 # No implicit rules.
 
@@ -300,10 +297,17 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
+test-coverage:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	npm test -- --coverage --coverageProvider=v8
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-17 13:28:21.044030408
+#  Last modified 2022-06-21 14:50:11.677767885
 #  File has been updated.
 #  Successfully updated.
 
@@ -311,7 +315,7 @@ test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 10):
+#  recipe to execute (from 'Makefile', line 13):
 	NODE_OPTIONS=--experimental-vm-modules npx jest
 
 # Not a target:
@@ -324,44 +328,51 @@ test_install:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 8):
+#  recipe to execute (from 'Makefile', line 11):
 	npm i jest
+
+install-deps:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 5):
+	npm ci
 
 lint:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 6):
+#  recipe to execute (from 'Makefile', line 9):
 	npx eslint src/ bin/
 
 gendiff:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 4):
+#  recipe to execute (from 'Makefile', line 7):
 	node bin/gendiff.js
 
-install:
+install: install-deps
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 2):
-	npm ci
+#  recipe to execute (from 'Makefile', line 3):
+	npx simple-git-hooks
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/19=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/23=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 261 B / avg = 9 B
-# current buf: size = 8162 B / used = 261 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 31 / storage = 295 B / avg = 9 B
+# current buf: size = 8162 B / used = 295 B / count = 31 / avg = 9 B
 
-# strcache performance: lookups = 37 / hit rate = 24%
+# strcache performance: lookups = 43 / hit rate = 27%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=1/37=3%
-# Finished Make data base on Tue Jun 21 09:29:28 2022
+# Load=31/8192=0%, Rehash=0, Collisions=1/43=2%
+# Finished Make data base on Wed Jun 22 09:17:22 2022
 
  
