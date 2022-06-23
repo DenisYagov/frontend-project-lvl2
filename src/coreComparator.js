@@ -1,4 +1,8 @@
+
+'use strict';
+
 import { readFileSync } from 'fs';
+import { load } from 'js-yaml';
 
 const isKeyPresent = (key, obj) => {
   // checking the presentanse of key in object by filtering
@@ -17,16 +21,7 @@ const findCommon = (obj1, obj2, inputArray) => {
   // checking the same keys in the objects
   return Object.keys(obj1).reduce((acc, key) => {
     if (isKeyPresent(key, obj2)) {
-      // in case obj1 and obj2 has same key
-      /*if (obj1[key] === obj2[key] ) {
-        // keys value in obj1 and obj2 has same value
-        acc.push([' ', `${key}`, obj1[key]]);
-      } else {
-        // keys value in obj1 and obj2 has different value
-        /*acc.push(['-', `${key}`, obj1[key]]);
-        acc.push(['+', `${key}`, obj2[key]]);
-        pushDiffValueObject(`${key}`, obj1[key], obj2[key], acc)
-      }*/
+      // in case key common check if value is the same and push the result
       (obj1[key] === obj2[key]) ? acc.push([' ', `${key}`, obj1[key]]) : pushDiffValueObject(`${key}`, obj1[key], obj2[key], acc)
     }
     return acc;
@@ -44,7 +39,15 @@ const findUniue = (obj1, obj2, inputArray, firstSym = '-') => {
   }, inputArray)
 }
 
-const getObjFromFile = (file) => {return JSON.parse(readFileSync(file).toString());}
+const getObjFromFile = (file) => {
+  // return object from file
+  //get extention of file via splitting to two parts by '.' symbal and return second
+  // value of array
+  const fileExt = file.split('.', 2)[1];
+  // in case yml file on input return parse yml type file
+  if ((fileExt === 'yml') || (fileExt === 'yaml')) return load(readFileSync(file));
+  // in case it wasnt yml file return parsing of json file
+  return JSON.parse(readFileSync(file));}
 
 const generateRezultArray = (obj1, obj2) => {
   return findCommon(obj1, obj2, findUniue(obj1, obj2, findUniue(obj2, obj1, [], '+')));
