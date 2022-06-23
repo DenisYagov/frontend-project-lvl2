@@ -10,3 +10,7 @@
 flat files comparation:
 [![project develop step 3](https://asciinema.org/a/bUURsAW6TmF6oNLsG3mHSxL5F.png
 )](https://asciinema.org/a/bUURsAW6TmF6oNLsG3mHSxL5F)
+
+flat files comparation, added yml format:
+[![project develop step 5](https://asciinema.org/a/aLvkfzW59vLh9iuzydYmx0SXr.png
+)](https://asciinema.org/a/aLvkfzW59vLh9iuzydYmx0SXr)
