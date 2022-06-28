@@ -38,10 +38,11 @@ const makeElementArray = (accArray, tabulationDeep, symbal, key, objVal) => {
   return accArray.push([`${tabulationDeep}${symbal}`, `${key}:`, `${isNullToString(objVal)}`]);
 }
 
+const ent = String.fromCharCode(10);
+
 const findCommon = (obj1, obj2, inputArray, tabulationDeep) => {
   // checking the same keys in the objects
   const tab = makeTabulation(tabulationDeep);
-  const ent = String.fromCharCode(10);
   return Object.keys(obj1).reduce((acc, key) => {
     if (isKeyPresent(key, obj2)) {
       // in case key common check if value is the same and push the result
@@ -82,7 +83,6 @@ const findUniue = (obj1, obj2, inputArray, tabulationDeep, firstSym = '-') => {
   //checking the keys in obj1 that absent in obj2
   // encrease the level of tabulation:
   const tab = makeTabulation(tabulationDeep);
-  const ent = String.fromCharCode(10);
   return Object.keys(obj1).reduce((acc, key) => {
   // check if key present in both
     if (!isKeyPresent(key, obj2)){
