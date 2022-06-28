@@ -29,7 +29,8 @@
   "homepage": "https://github.com/DenisYagov/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^9.3.0",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "eslint": "^8.17.0",
