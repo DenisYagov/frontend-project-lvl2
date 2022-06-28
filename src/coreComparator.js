@@ -34,9 +34,12 @@ const makeTabulation = (tabulationDeep) => {return tabulationDeep + '  '};
 const isNullToString = (val) => {if (val === null) return 'null'
 return val;}
 
+const makeElementArray = (accArray, tabulationDeep, symbal, key, objVal) => {
+  return accArray.push([`${tabulationDeep}${symbal}`, `${key}:`, `${isNullToString(objVal)}`]);
+}
+
 const findCommon = (obj1, obj2, inputArray, tabulationDeep) => {
   // checking the same keys in the objects
-  //const tab = tabulationDeep + String.fromCharCode(9);
   const tab = makeTabulation(tabulationDeep);
   const ent = String.fromCharCode(10);
   return Object.keys(obj1).reduce((acc, key) => {
@@ -56,9 +59,8 @@ const findCommon = (obj1, obj2, inputArray, tabulationDeep) => {
             //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
             //push old parameter value
             //and copy obj2[key] tree
-            acc.push([`${tabulationDeep}-`, `${key}:`, `${isNullToString(obj1[key])}`]);
+            makeElementArray(acc, tabulationDeep, '-', key, obj1[key]);
             acc.push([`${tabulationDeep}+`, `${key}:`, `{${ent}${compareObjects({}, obj2[key], tab, ' ')}${ent}${tabulationDeep}}`]);
-
           }
         }
         // !!!! in case object inside
@@ -68,7 +70,7 @@ const findCommon = (obj1, obj2, inputArray, tabulationDeep) => {
         } else {
           // in case second object is one string
           acc.push([`${tabulationDeep}-`, `${key}:`, `{${ent}${compareObjects(obj1[key], {}, tab, ' ')}${ent}${tabulationDeep}}`]);
-          acc.push([`${tabulationDeep}+`, `${key}:`, `${isNullToString(obj2[key])}`]);
+          makeElementArray(acc, tabulationDeep, '+', key, obj2[key]);
         }
       }
       }
@@ -79,7 +81,6 @@ const findCommon = (obj1, obj2, inputArray, tabulationDeep) => {
 const findUniue = (obj1, obj2, inputArray, tabulationDeep, firstSym = '-') => {
   //checking the keys in obj1 that absent in obj2
   // encrease the level of tabulation:
-  //const tab = tabulationDeep + String.fromCharCode(9);
   const tab = makeTabulation(tabulationDeep);
   const ent = String.fromCharCode(10);
   return Object.keys(obj1).reduce((acc, key) => {
