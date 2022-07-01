@@ -9,7 +9,8 @@ lint:
 	npx eslint src/ bin/
 test_install:
 	npm i jest
-test: 
+test:
+	clear
 	NODE_OPTIONS=--experimental-vm-modules npx jest
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
