@@ -2,7 +2,7 @@ import getObjFromFile from './fileParsing.js';
 import makeStringFromArray from './formatters/index.js'
 import isString from './stringCheck.js';
 
-export const [add, del, upt_add, upt_del, keep] = [0, 1, 2, 3, 4];
+import  { add, del, upt_add, upt_del, keep } from './constants.js'
 
 const isKeyPresent = (key, obj) => {
   // checking the presentanse of key in object by filtering
@@ -45,8 +45,8 @@ const findCommon = (obj1, obj2, inputArray) => {
             //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
             //push old parameter value
             //and copy obj2[key] tree
-            makeElementArray(acc, del, key, obj1[key]);
-            acc.push([add, key, compareObjects({}, obj2[key], keep)]);
+            makeElementArray(acc, upt_del, key, obj1[key]);
+            acc.push([upt_add, key, compareObjects({}, obj2[key], keep)]);
           }
         }
         // !!!! in case object inside
@@ -55,8 +55,8 @@ const findCommon = (obj1, obj2, inputArray) => {
           acc.push([keep, key, compareObjects(obj1[key], obj2[key], del)]);
         } else {
           // in case second object is one string
-          acc.push([del, key, compareObjects(obj1[key], {}, keep)]);
-          makeElementArray(acc, add, key, obj2[key]);
+          acc.push([upt_del, key, compareObjects(obj1[key], {}, keep)]);
+          makeElementArray(acc, upt_add, key, obj2[key]);
         }
       }
       }
@@ -93,15 +93,12 @@ if (rawData.args[0] === undefined) return '';
 //make objects
 const obj1 = getObjFromFile(rawData.args[0]);
 const obj2 = getObjFromFile(rawData.args[1]);
-
+/*
 console.log('obj1 = ', obj1);
-console.log('obj2 = ', obj2);
+console.log('obj2 = ', obj2);*/
 console.log('rawData._optionValues.format = ', rawData._optionValues.format);
-//console.log(makeStringFromArray('stylish', compareObjects(obj1, obj2)))
-/*if (rawData._optionValues.format === undefined) {
-  return makeStringFromArray('stylish', compareObjects(obj1, obj2));
- } else {*/
-  return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
+
+return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
  }
 //}
 
