@@ -1,4 +1,4 @@
-import compareObjects from '../src/coreComparator.js';
+import compareFiles from '../src/coreComparator.js';
 import { readFileSync } from 'fs';
 //import { test, expect } from 'jest';
 
@@ -18,7 +18,7 @@ const comparation = (file1, file2, eqFile) => {
   const rawData = {
     args : [file1 , file2]};
   const rez1 = readFileSync('__fixtures__/' + eqFile).toString();
-  expect(compareObjects(rawData)).toEqual(rez1);
+  expect(compareFiles(rawData)).toEqual(rez1);
 }
 
 test('compare files', () => {

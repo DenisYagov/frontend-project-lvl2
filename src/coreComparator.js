@@ -96,16 +96,8 @@ const obj2 = getObjFromFile(rawData.args[1]);
 
 console.log('obj1 = ', obj1);
 console.log('obj2 = ', obj2);
-//console.log('compareObjects(obj1, obj2) = ', compareObjects(obj1, obj2));
-/*console.log('compareObjects(obj1, obj2) [0][2] = ', compareObjects(obj1, obj2)[0][2]);
-console.log('compareObjects(obj1, obj2) [1][2] = ', compareObjects(obj1, obj2)[1][2]);
-console.log('compareObjects(obj1, obj2) [2][2] = ', compareObjects(obj1, obj2)[2][2]);
-console.log('compareObjects(obj1, obj2) [3][2] = ', compareObjects(obj1, obj2)[3][2]);
-console.log('makeStringFromArray(stylish, compareObjects(obj1, obj2)) = ', makeStringFromArray('stylish', compareObjects(obj1, obj2)))
-return 'finish';*/
-//return makeStringFromArray('stylish', compareObjects(obj1, obj2)).join(String.fromCharCode(10));
-//console.log('makeStringFromArray(stylish, compareObjects(obj1, obj2)) = ', makeStringFromArray('stylish', compareObjects(obj1, obj2)))
-return makeStringFromArray('stylish', compareObjects(obj1, obj2));
+//console.log(makeStringFromArray('stylish', compareObjects(obj1, obj2)))
+return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
 }
 
 const compareObjects = (obj1, obj2, opType = del) => {

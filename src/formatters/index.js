@@ -5,11 +5,13 @@ const makeStringFromArray = (type, inputArray) => {
     {
         case 'stylish':
             {
+            console.log('output format is stylish');
             return makeStilishString(inputArray)
             }
         case 'plain':
             {
-            return makeStilishString(inputArray)
+            console.log('output format is plain');
+            return 'not yet ready'
             }
         default:
             {
