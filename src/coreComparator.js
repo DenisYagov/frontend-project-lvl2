@@ -96,9 +96,14 @@ const obj2 = getObjFromFile(rawData.args[1]);
 
 console.log('obj1 = ', obj1);
 console.log('obj2 = ', obj2);
+console.log('rawData._optionValues.format = ', rawData._optionValues.format);
 //console.log(makeStringFromArray('stylish', compareObjects(obj1, obj2)))
-return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
-}
+/*if (rawData._optionValues.format === undefined) {
+  return makeStringFromArray('stylish', compareObjects(obj1, obj2));
+ } else {*/
+  return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
+ }
+//}
 
 const compareObjects = (obj1, obj2, opType = del) => {
 // make out array

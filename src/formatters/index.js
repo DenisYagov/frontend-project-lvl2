@@ -1,6 +1,7 @@
 import makeStilishString from './stylish.js'
 
 const makeStringFromArray = (type, inputArray) => {
+    console.log('we aere here, type = ', type)
     switch(type)
     {
         case 'stylish':
@@ -15,7 +16,8 @@ const makeStringFromArray = (type, inputArray) => {
             }
         default:
             {
-            return null;    
+            console.log('output format is stylish');
+            return makeStilishString(inputArray) 
             }
     }
 }
