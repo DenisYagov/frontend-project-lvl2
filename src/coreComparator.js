@@ -15,6 +15,7 @@ const isKeyPresent = (key, obj) => {
 const pushDiffValueObject = (key, val1, val2, arr) => {
   arr.push([upt_del, key, isNullToString(val1)]);
   arr.push([upt_add, key, isNullToString(val2)]);
+  return arr;
 }
 
 // in case value of the object is null need to switch it to string 'null'
@@ -38,14 +39,12 @@ const findCommon = (obj1, obj2, inputArray) => {
       //in case key values are different
       if (isString(obj2[key])) {
         // in case obj1[key] is leaf and obj2[key] is leaf just process as replacement 
-        pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
-        return acc;
+        return pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
       }
       //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
       //push old parameter value
       //and copy obj2[key] tree
-      pushDiffValueObject(key, obj1[key], compareObjects({}, obj2[key], keep), acc)
-      return acc;
+      return pushDiffValueObject(key, obj1[key], compareObjects({}, obj2[key], keep), acc)
       }
     // !!!! in case object inside
     if (!isString(obj2[key])) {
