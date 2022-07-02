@@ -13,8 +13,8 @@ const isKeyPresent = (key, obj) => {
 }
 
 const pushDiffValueObject = (key, val1, val2, arr) => {
-  arr.push([upt_del, key, val1]);
-  arr.push([upt_add, key, val2]);
+  arr.push([upt_del, key, isNullToString(val1)]);
+  arr.push([upt_add, key, isNullToString(val2)]);
 }
 
 // in case value of the object is null need to switch it to string 'null'
@@ -22,45 +22,39 @@ const pushDiffValueObject = (key, val1, val2, arr) => {
 const isNullToString = (val) => {if (val === null) return 'null'
 return val;}
 
-const makeElementArray = (accArray, opType, key, objVal) => {
-  return accArray.push([opType, key, isNullToString(objVal)]);
-}
-
 const findCommon = (obj1, obj2, inputArray) => {
   // checking the same keys in the objects
   return Object.keys(obj1).reduce((acc, key) => {
-    if (isKeyPresent(key, obj2)) {
-      // in case key common check if value is the same and push the result
-      if (isString(obj1[key])){
-        // this is leaf
-        if (obj1[key] === obj2[key]) {
-          // in case key values are same
-          acc.push([keep, key, isNullToString(obj1[key])])
-        } else {
-          //in case key values are different
-          if (isString(obj2[key])) {
-            // in case obj1[key] is leaf and obj2[key] is leaf just process as replacement 
-            pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
-          } else {
-            //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
-            //push old parameter value
-            //and copy obj2[key] tree
-            makeElementArray(acc, upt_del, key, obj1[key]);
-            acc.push([upt_add, key, compareObjects({}, obj2[key], keep)]);
-          }
-        }
-        // !!!! in case object inside
-        } else {
-          if (!isString(obj2[key])) {
-          acc.push([keep, key, compareObjects(obj1[key], obj2[key], del)]);
-        } else {
-          // in case second object is one string
-          acc.push([upt_del, key, compareObjects(obj1[key], {}, keep)]);
-          makeElementArray(acc, upt_add, key, obj2[key]);
-        }
+    // in case key is not common - return current acc
+    if (!isKeyPresent(key, obj2)) return acc;
+    // in case key common check if value is the same and push the result
+    if (isString(obj1[key])){
+      // this is leaf
+      if (obj1[key] === obj2[key]) {
+        // in case key values are same
+        acc.push([keep, key, isNullToString(obj1[key])])
+        return acc;
       }
+      //in case key values are different
+      if (isString(obj2[key])) {
+        // in case obj1[key] is leaf and obj2[key] is leaf just process as replacement 
+        pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
+        return acc;
       }
-    return acc;
+      //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
+      //push old parameter value
+      //and copy obj2[key] tree
+      pushDiffValueObject(key, obj1[key], compareObjects({}, obj2[key], keep), acc)
+      return acc;
+      }
+    // !!!! in case object inside
+    if (!isString(obj2[key])) {
+      acc.push([keep, key, compareObjects(obj1[key], obj2[key], del)]);
+      return acc;
+    }
+  // in case second object is one string
+  pushDiffValueObject(key, compareObjects(obj1[key], {}, keep), obj2[key], acc)
+  return acc;
   }, inputArray);
 }
 
