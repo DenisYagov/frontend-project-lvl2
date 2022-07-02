@@ -69,17 +69,16 @@ const findUniue = (obj1, obj2, inputArray, opType = del) => {
   // encrease the level of tabulation:
   return Object.keys(obj1).reduce((acc, key) => {
   // check if key present in both
-    if (!isKeyPresent(key, obj2)){
+  if (isKeyPresent(key, obj2)) return acc;
       // in case obj1 has unique key
-      if (isString(obj1[key])){
+    if (isString(obj1[key])){
       // this is leaf
       acc.push([opType, key, isNullToString(obj1[key])]);
+      return acc;
       // !!!! in case object inside
-      } else {
-        acc.push([opType, key, compareObjects(obj1[key], {}, keep)]);
-      }
     }
-    return acc;
+  acc.push([opType, key, compareObjects(obj1[key], {}, keep)]);
+  return acc;
   }, inputArray)
 }
 
