@@ -18,3 +18,7 @@ flat files comparation, added yml format:
 flat and tree files comparation.
 [![project develop step 6](https://asciinema.org/a/lcqIZquPcPEPUDFkxUircJ0KX.png
 )](https://asciinema.org/a/lcqIZquPcPEPUDFkxUircJ0KX)
+
+multyformat output tree files comparation.
+[![project develop step 7](https://asciinema.org/a/wXQwxulfada3l0ncJxbsZKsqJ.png
+)](https://asciinema.org/a/wXQwxulfada3l0ncJxbsZKsqJ)
