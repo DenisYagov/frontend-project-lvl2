@@ -49,10 +49,11 @@ const findCommon = (obj1, obj2, inputArray) => {
     // !!!! in case object inside
     if (!isString(obj2[key])) {
       acc.push([keep, key, compareObjects(obj1[key], obj2[key], del)]);
-      return acc;
+      //return acc;
+    } else {
+    // in case second object is one string
+    pushDiffValueObject(key, compareObjects(obj1[key], {}, keep), obj2[key], acc)
     }
-  // in case second object is one string
-  pushDiffValueObject(key, compareObjects(obj1[key], {}, keep), obj2[key], acc)
   return acc;
   }, inputArray);
 }
