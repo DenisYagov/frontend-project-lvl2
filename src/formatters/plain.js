@@ -35,19 +35,17 @@ const plainString = (cellArray, PropertyName) => {
 const proecssPlainString = (inputArray, PropertyName = '') => {
 // make Stylish format
     return inputArray.reduce((acc, cellArray) => {
-        // in case we having just a value to keep we have to skip any operations
         if (!Array.isArray(cellArray[2])) {
         // we having just a termination
-            acc += plainString(cellArray, PropertyName);
-        } else {
-        // we having the branch
-            if (cellArray[0] === keep) {
-                    acc += proecssPlainString(cellArray[2],`${PropertyName}.${cellArray[1]}`)
-                } else {
-                    acc += plainString(cellArray, PropertyName);
-            }
+            return (acc + plainString(cellArray, PropertyName));
         }
-        return acc;
+        // we having the branch
+        // in case we having just a value to keep, we have to check operations
+        // inside of branch
+        if (cellArray[0] === keep) 
+            return (acc + proecssPlainString(cellArray[2],`${PropertyName}.${cellArray[1]}`));
+        // otherwise we just add the string
+        return (acc + plainString(cellArray, PropertyName));
     }, '')
     }
     
