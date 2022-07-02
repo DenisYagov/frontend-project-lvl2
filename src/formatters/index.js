@@ -1,7 +1,7 @@
 import makeStilishString from './stylish.js'
+import makePlainString from './plain.js'
 
 const makeStringFromArray = (type, inputArray) => {
-    console.log('we aere here, type = ', type)
     switch(type)
     {
         case 'stylish':
@@ -12,12 +12,12 @@ const makeStringFromArray = (type, inputArray) => {
         case 'plain':
             {
             console.log('output format is plain');
-            return 'not yet ready'
+            return makePlainString(inputArray)
             }
         default:
             {
-            console.log('output format is stylish');
-            return makeStilishString(inputArray) 
+            console.log('output format is stylish as default');
+            return makeStilishString(inputArray);
             }
     }
 }

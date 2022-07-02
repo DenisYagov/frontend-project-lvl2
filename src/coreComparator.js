@@ -107,12 +107,6 @@ const compareObjects = (obj1, obj2, opType = del) => {
 const outArr = generateRezultArray(obj1, obj2, opType)
 // sort array by names
 .sort((a, b) => {return (a[1] < b[1] ? -1 : (a[1] > b[1] ? 1 : 0))})
-//make string from array element, that splited to 3 strings
-/*.map((cell) => {
-  //return cell.join(' ');
-  return makeStringFromArray('stylish', cell);
-});
-// make string from array by join via 'enter' symbal*/
 return outArr;
 }
 

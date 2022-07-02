@@ -67,4 +67,6 @@ test('compare multylevel multyformat files', () => {
   comparation(f8, f7, 'rez41', 'stylish');
   comparation(f9, f10, 'rez42', 'stylish');
   comparation(f8, f8, 'rez43', 'stylish');
+  comparation(f7, f8, 'rez51', 'plain');
+  comparation(f8, f7, 'rez52', 'plain');
   })
