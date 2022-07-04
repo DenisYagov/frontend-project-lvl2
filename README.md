@@ -22,3 +22,7 @@ flat and tree files comparation.
 multyformat output tree files comparation.
 [![project develop step 7](https://asciinema.org/a/wXQwxulfada3l0ncJxbsZKsqJ.png
 )](https://asciinema.org/a/wXQwxulfada3l0ncJxbsZKsqJ)
+
+json format output tree files comparation.
+[![project develop step 8](https://asciinema.org/a/x8H4wMGPt8YtjegPcmXVOPXHN.png
+)](https://asciinema.org/a/x8H4wMGPt8YtjegPcmXVOPXHN)
