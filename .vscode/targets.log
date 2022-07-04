@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul  2 09:26:50 2022
+# Make data base, printed on Mon Jul  4 10:22:10 2022
 
 # Variables
 
@@ -51,7 +49,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:40023
+JOURNAL_STREAM = 8:38761
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,7 +75,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/99/usr/share/code/code
 # environment
-MANAGERPID = 1048
+MANAGERPID = 1058
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -93,7 +91,7 @@ PATH = /home/bigdog/.npm-global/bin:/home/bigdog/.npm-global/bin:/usr/local/sbin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1387,unix/Bigdog-ASUS:/tmp/.ICE-unix/1387
+SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1393,unix/Bigdog-ASUS:/tmp/.ICE-unix/1393
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +109,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 9a39f7b934fc48889e7339dd44e78948
+INVOCATION_ID = 8886619d9129497a81783bcf72d4d540
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -123,7 +121,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2619
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6788
 # automatic
 %F = $(notdir $%)
 # environment
@@ -137,7 +135,7 @@ PWD = /home/bigdog/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1349
+SSH_AGENT_PID = 1355
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -189,7 +187,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-dd8fcc78-1b25-4791-85c9-9cde3996e7b5.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a774285d-cd87-48d1-8a1a-f5e882450b4a.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -269,7 +267,7 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2712
+VSCODE_PID = 6834
 # variable set hash-table stats:
 # Load=129/1024=13%, Rehash=0, Collisions=23/154=15%
 
@@ -281,7 +279,6 @@ VSCODE_PID = 2712
 
 # . (device 2054, inode 13111795): 27 files, no impossibilities.
 
- 
 # 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
@@ -293,6 +290,9 @@ VSCODE_PID = 2712
 # Not a target:
 all:
 #  Command line target.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
@@ -301,13 +301,13 @@ test-coverage:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 16):
+#  recipe to execute (from 'Makefile', line 15):
 	npm test -- --coverage --coverageProvider=v8
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 12:31:01.377918491
+#  Last modified 2022-07-02 10:56:01.746859742
 #  File has been updated.
 #  Successfully updated.
 
@@ -316,7 +316,6 @@ test:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 13):
-	clear
 	NODE_OPTIONS=--experimental-vm-modules npx jest
 
 # Not a target:
@@ -374,6 +373,6 @@ install: install-deps
 # strcache performance: lookups = 51 / hit rate = 23%
 # hash-table stats:
 # Load=39/8192=0%, Rehash=0, Collisions=1/51=2%
-# Finished Make data base on Sat Jul  2 09:26:50 2022
+# Finished Make data base on Mon Jul  4 10:22:10 2022
 
  
