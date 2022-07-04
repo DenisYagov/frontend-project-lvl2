@@ -7,8 +7,15 @@ const preSym = ['/nadded parameter', '/ndeleted parameter',
 const formatOutputValue = (value) => {
     // in case value is pure string return string in quotes
     //otherwise return value as is
-    if (!isNaN(value)||(value === null)||(value === true)||(value === false)) return value;
+    if ((!isNaN(value) || (value === null)||
+    (value === true) || (value === false))
+    && (value !== '')) return value;
+    if (value === 'null') return null;
     return `"${value}"`
+}
+
+const startingString = (cellArray) => {
+    return `"${preSym[cellArray[0]]}" "${cellArray[1]}": `;
 }
 
 const processJsonString = (inputArray) => {
@@ -16,17 +23,20 @@ const processJsonString = (inputArray) => {
 return inputArray.reduce((acc, cellArray) => {
     if (!Array.isArray(cellArray[2])) {
     // we having just a termination
-    acc += `"${preSym[cellArray[0]]}" ["${cellArray[1]}": ${formatOutputValue(cellArray[2])}],`
+    acc += `${startingString(cellArray)}${formatOutputValue(cellArray[2])},`
     } else {
     // we having the branch
-    acc +=  `"${preSym[cellArray[0]]}": "${cellArray[1]}": {${processJsonString(cellArray[2])}}`
+    acc +=  `${startingString(cellArray)}{${processJsonString(cellArray[2])}}`
     }
     return acc;
     }, '')
 }
 
 const makeJsonString = (inputArray) => {
-    return processJsonString(inputArray).slice(0, -2)
+    const out = processJsonString(inputArray);
+    if (out[out.length - 1] === ',') return out.slice(0, -1);
+    return out;
 }
 
 export default makeJsonString;
+export { formatOutputValue }

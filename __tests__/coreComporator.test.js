@@ -1,6 +1,6 @@
 import compareFiles from '../src/coreComparator.js';
 import { readFileSync } from 'fs';
-//import { test, expect } from 'jest';
+import { formatOutputValue } from '../src/formatters/json.js';
 
 // processing files:
 const f1 = '__fixtures__/file1.json';
@@ -59,6 +59,14 @@ comparation(f10, f9, 'rez41');
 comparation(f8, f8, 'rez43');
 comparation(f10, f10, 'rez43');
 comparation(f10, f8, 'rez43');
+})
+
+test ('formatOutputValue function test', () => {
+  expect(formatOutputValue('')).toEqual(`""`)
+  expect(formatOutputValue('null')).toEqual(null)
+  expect(formatOutputValue(null)).toEqual(null)
+  expect(formatOutputValue(57)).toEqual(57)
+  expect(formatOutputValue('val')).toEqual(`"val"`)
 })
 
 test('compare multylevel multyformat files', () => {
