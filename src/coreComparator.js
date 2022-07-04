@@ -23,6 +23,25 @@ const pushDiffValueObject = (key, val1, val2, arr) => {
 const isNullToString = (val) => {if (val === null) return 'null'
 return val;}
 
+const leafProcessing = (obj1, obj2, key, acc) => {
+  // function to simplify findCommon.
+  // compares two leafs
+  if (obj1[key] === obj2[key]) {
+    // in case key values are same
+    acc.push([keep, key, isNullToString(obj1[key])])
+    return acc;
+  }
+  //in case key values are different
+  if (isString(obj2[key])) {
+    // in case obj1[key] is leaf and obj2[key] is leaf just process as replacement 
+    return pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
+  }
+  //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
+  //push old parameter value
+  //and copy obj2[key] tree
+  return pushDiffValueObject(key, obj1[key], compareObjects({}, obj2[key], keep), acc)
+}
+
 const findCommon = (obj1, obj2, inputArray) => {
   // checking the same keys in the objects
   return Object.keys(obj1).reduce((acc, key) => {
@@ -31,29 +50,15 @@ const findCommon = (obj1, obj2, inputArray) => {
     // in case key common check if value is the same and push the result
     if (isString(obj1[key])){
       // this is leaf
-      if (obj1[key] === obj2[key]) {
-        // in case key values are same
-        acc.push([keep, key, isNullToString(obj1[key])])
-        return acc;
-      }
-      //in case key values are different
-      if (isString(obj2[key])) {
-        // in case obj1[key] is leaf and obj2[key] is leaf just process as replacement 
-        return pushDiffValueObject(key, isNullToString(obj1[key]), isNullToString(obj2[key]), acc)
-      }
-      //in case obj1[key] is leaf and obj2[key] is NOT leaf we need to
-      //push old parameter value
-      //and copy obj2[key] tree
-      return pushDiffValueObject(key, obj1[key], compareObjects({}, obj2[key], keep), acc)
+        return leafProcessing(obj1, obj2, key, acc);
       }
     // !!!! in case object inside
     if (!isString(obj2[key])) {
       acc.push([keep, key, compareObjects(obj1[key], obj2[key], del)]);
-      //return acc;
-    } else {
-    // in case second object is one string
-    pushDiffValueObject(key, compareObjects(obj1[key], {}, keep), obj2[key], acc)
+      return acc;
     }
+    // in case second object is one string
+  pushDiffValueObject(key, compareObjects(obj1[key], {}, keep), obj2[key], acc)
   return acc;
   }, inputArray);
 }
