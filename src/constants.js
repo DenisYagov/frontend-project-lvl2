@@ -1,3 +1,5 @@
-const [add, del, upt_add, upt_del, keep] = [0, 1, 2, 3, 4];
+const [add, del, uptAdd, uptDel, keep] = [0, 1, 2, 3, 4];
 
-export {add, del, upt_add, upt_del, keep}
+export {
+  add, del, uptAdd, uptDel, keep,
+};

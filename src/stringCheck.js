@@ -1,14 +1,13 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-globals */
 const isString = (obj) => {
-    //return true if object is string
-    for (let key in obj) {
-      // in case obj is string = array of char this is empty object. In this case 
-      // key is nomber. We reject this and return isNotObject = true
-      if (!isNaN(key)) return true;
-      // in case not empty object and not a string value it will start to execute
-      return false;
-    }
-    // loop execution not started = this is empty object
-    return true;
-  }
+  // return true if object is string
+  if ((obj === undefined) || (obj === null) || (obj === '')) return true;
+  const outBool = Object.keys(obj).reduce((acc, key) => {
+    if (isNaN(key)) acc = false;
+    return acc;
+  }, true);
+  return outBool;
+};
 
-  export default isString
+export default isString;

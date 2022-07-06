@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul  4 10:22:10 2022
+# Make data base, printed on Wed Jul  6 12:18:06 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ SNAP_DATA = /var/snap/code/99
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:38761
+JOURNAL_STREAM = 8:39076
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -75,7 +75,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/99/usr/share/code/code
 # environment
-MANAGERPID = 1058
+MANAGERPID = 1050
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -91,7 +91,7 @@ PATH = /home/bigdog/.npm-global/bin:/home/bigdog/.npm-global/bin:/usr/local/sbin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1393,unix/Bigdog-ASUS:/tmp/.ICE-unix/1393
+SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1360,unix/Bigdog-ASUS:/tmp/.ICE-unix/1360
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -109,7 +109,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 8886619d9129497a81783bcf72d4d540
+INVOCATION_ID = a32fbe389298420d89362f04e1eb1af9
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -121,7 +121,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6788
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2198
 # automatic
 %F = $(notdir $%)
 # environment
@@ -135,7 +135,7 @@ PWD = /home/bigdog/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1355
+SSH_AGENT_PID = 1323
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -187,7 +187,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a774285d-cd87-48d1-8a1a-f5e882450b4a.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b16b2b63-2a6d-4e23-9de9-c470ac0399ab.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -267,7 +267,7 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6834
+VSCODE_PID = 2249
 # variable set hash-table stats:
 # Load=129/1024=13%, Rehash=0, Collisions=23/154=15%
 
@@ -288,11 +288,11 @@ VSCODE_PID = 6834
 # Files
 
 # Not a target:
-all:
-#  Command line target.
  
 make: *** No rule to make target 'all'.  Stop.
 
+all:
+#  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
@@ -373,6 +373,6 @@ install: install-deps
 # strcache performance: lookups = 51 / hit rate = 23%
 # hash-table stats:
 # Load=39/8192=0%, Rehash=0, Collisions=1/51=2%
-# Finished Make data base on Mon Jul  4 10:22:10 2022
+# Finished Make data base on Wed Jul  6 12:18:06 2022
 
  

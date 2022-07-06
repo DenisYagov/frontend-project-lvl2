@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-
+/* eslint-disable no-unused-expressions */
+import { Command } from 'commander';
 import compareFiles from '../src/coreComparator.js';
 
-import { Command } from 'commander';
 const program = new Command();
 
 program
@@ -15,13 +15,12 @@ program
   .option('-h, --help', 'display help for command')
 
   .action((fileName1, lineOptions, rawData) => {
-
   // compare files based on input raw data
-  const outStr = compareFiles(rawData);
-  // in case no input files return null
-  (outStr.length !== 0) ? console.log(outStr) : null;
-  return outStr;
-  })
+    const outStr = compareFiles(rawData);
+    // in case no input files return null
+    (outStr.length !== 0) ? console.log(outStr) : null;
+    return outStr;
+  });
 
 program.parse();
-if (program.opts().help === true) program.help();	
+if (program.opts().help === true) program.help();
