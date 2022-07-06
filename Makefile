@@ -7,6 +7,9 @@ gendiff: #run project
 	node bin/gendiff.js
 lint:
 	npx eslint ./
+linter:
+	npm install eslint-plugin-import@latest --save-dev
+	npx eslint ./
 test_install:
 	npm i jest
 test:
