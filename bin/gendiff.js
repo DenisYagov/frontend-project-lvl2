@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import { Command } from 'commander';
 import compareFiles from '../src/coreComparator.js';
+import { defFormat } from '../src/formatters/index.js';
 
 const program = new Command();
 
@@ -11,7 +12,7 @@ program
   .argument('[type]', 'type of comparing files')
   .description('Compares two configuration files and shows a difference')
   .option('-V, --version', 'output the version')
-  .option('-f, --format <type>', 'output format (default: "stylish")')
+  .option('-f, --format <type>', `output format (default: "${defFormat}")`)
   .option('-h, --help', 'display help for command')
 
   .action((fileName1, lineOptions, rawData) => {

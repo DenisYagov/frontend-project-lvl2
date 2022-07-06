@@ -2,6 +2,8 @@ import makeStilishString from './stylish.js';
 import makePlainString from './plain.js';
 import makeJsonString from './json.js';
 
+const defFormat = 'stylish';
+
 const makeStringFromArray = (type, inputArray) => {
   switch (type) {
     case 'json':
@@ -23,3 +25,4 @@ const makeStringFromArray = (type, inputArray) => {
 };
 
 export default makeStringFromArray;
+export { defFormat };
