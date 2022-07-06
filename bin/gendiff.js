@@ -18,7 +18,7 @@ program
   // compare files based on input raw data
     const outStr = compareFiles(rawData);
     // in case no input files return null
-    (outStr.length !== 0) ? console.log(outStr) : null;
+    (outStr.length !== 0) ? console.log(outStr) : 'files fully compatible';
     return outStr;
   });
 

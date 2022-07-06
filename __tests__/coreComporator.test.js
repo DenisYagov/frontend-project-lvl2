@@ -43,39 +43,39 @@ test('check isString function', () => {
 test('compare flat files', () => {
   // comaration of json files
   // same files to compare
-  comparation(f1, f1, 'rez1');
+  comparation(f1, f1, 'rez1.txt');
   // emty file comparation
-  comparation(f1, f2, 'rez21');
-  comparation(f2, f1, 'rez22');
+  comparation(f1, f2, 'rez21.txt');
+  comparation(f2, f1, 'rez22.txt');
   // different files
-  comparation(f1, f3, 'rez3');
+  comparation(f1, f3, 'rez3.txt');
   // comaration of YAML files
   // same files to compare
-  comparation(f4, f4, 'rez1');
+  comparation(f4, f4, 'rez1.txt');
   // emty file comparation
-  comparation(f4, f5, 'rez21');
-  comparation(f5, f4, 'rez22');
+  comparation(f4, f5, 'rez21.txt');
+  comparation(f5, f4, 'rez22.txt');
   // different files
-  comparation(f4, f6, 'rez3');
+  comparation(f4, f6, 'rez3.txt');
   // comaration of mix YAML and json files
   // same files to compare
-  comparation(f1, f4, 'rez1');
+  comparation(f1, f4, 'rez1.txt');
   // emty file comparation
-  comparation(f4, f2, 'rez21');
-  comparation(f5, f1, 'rez22');
+  comparation(f4, f2, 'rez21.txt');
+  comparation(f5, f1, 'rez22.txt');
   // different files
-  comparation(f1, f6, 'rez3');
+  comparation(f1, f6, 'rez3.txt');
 });
 
 test('compare multylevel files', () => {
 // comparation of multylevel files
-  comparation(f7, f8, 'rez42');
-  comparation(f8, f7, 'rez41');
-  comparation(f9, f10, 'rez42');
-  comparation(f10, f9, 'rez41');
-  comparation(f8, f8, 'rez43');
-  comparation(f10, f10, 'rez43');
-  comparation(f10, f8, 'rez43');
+  comparation(f7, f8, 'rez42.txt');
+  comparation(f8, f7, 'rez41.txt');
+  comparation(f9, f10, 'rez42.txt');
+  comparation(f10, f9, 'rez41.txt');
+  comparation(f8, f8, 'rez43.txt');
+  comparation(f10, f10, 'rez43.txt');
+  comparation(f10, f8, 'rez43.txt');
 });
 
 test('formatOutputValue function test', () => {
@@ -88,13 +88,13 @@ test('formatOutputValue function test', () => {
 
 test('compare multylevel multyformat files', () => {
   // comparation of multylevel files
-  comparation(f7, f8, 'rez42', 'stylish');
-  comparation(f8, f7, 'rez41', 'stylish');
-  comparation(f9, f10, 'rez42', 'stylish');
-  comparation(f8, f8, 'rez43', 'stylish');
-  comparation(f7, f8, 'rez51', 'plain');
-  comparation(f8, f7, 'rez52', 'plain');
-  comparation(f7, f8, 'rez53', 'json');
-  comparation(f8, f7, 'rez54', 'json');
-  comparation(f8, f8, 'rez55', 'json');
+  comparation(f7, f8, 'rez42.txt', 'stylish');
+  comparation(f8, f7, 'rez41.txt', 'stylish');
+  comparation(f9, f10, 'rez42.txt', 'stylish');
+  comparation(f8, f8, 'rez43.txt', 'stylish');
+  comparation(f7, f8, 'rez51.txt', 'plain');
+  comparation(f8, f7, 'rez52.txt', 'plain');
+  comparation(f7, f8, 'rez53.txt', 'json');
+  comparation(f8, f7, 'rez54.txt', 'json');
+  comparation(f8, f8, 'rez55.txt', 'json');
 });
