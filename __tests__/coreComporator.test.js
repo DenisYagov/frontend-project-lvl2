@@ -6,23 +6,23 @@ import { formatOutputValue } from '../src/formatters/json.js';
 import isString from '../src/stringCheck.js';
 
 // processing files:
-const f1 = '__fixtures__/file1.json';
-const f2 = '__fixtures__/file2.json';
-const f3 = '__fixtures__/file3.json';
-const f4 = '__fixtures__/file4.yml';
-const f5 = '__fixtures__/file5.yml';
-const f6 = '__fixtures__/file6.yaml';
-const f7 = '__fixtures__/file7.json';
-const f8 = '__fixtures__/file8.json';
-const f9 = '__fixtures__/file9.yaml';
-const f10 = '__fixtures__/file10.yaml';
+const f1 = './__tests__/__fixtures__/file1.json';
+const f2 = './__tests__/__fixtures__/file2.json';
+const f3 = './__tests__/__fixtures__/file3.json';
+const f4 = './__tests__/__fixtures__/file4.yml';
+const f5 = './__tests__/__fixtures__/file5.yml';
+const f6 = './__tests__/__fixtures__/file6.yaml';
+const f7 = './__tests__/__fixtures__/file7.json';
+const f8 = './__tests__/__fixtures__/file8.json';
+const f9 = './__tests__/__fixtures__/file9.yaml';
+const f10 = './__tests__/__fixtures__/file10.yaml';
 
 const comparation = (file1, file2, eqFile, format = '') => {
   const rawData = {
     args: [file1, file2],
     _optionValues: { format: format },
   };
-  const rez1 = readFileSync(`__fixtures__/${eqFile}`).toString();
+  const rez1 = readFileSync(`./__tests__/__fixtures__/${eqFile}`).toString();
   expect(compareFiles(rawData)).toEqual(rez1);
 };
 
