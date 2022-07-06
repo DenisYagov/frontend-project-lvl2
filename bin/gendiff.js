@@ -23,4 +23,3 @@ program
   });
 
 program.parse();
-if (program.opts().help === true) program.help();
