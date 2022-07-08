@@ -11,9 +11,9 @@ const complexValueString = (value) => {
   if (value === null) return null;
   if (!Array.isArray(value)) {
     // in case we heving empty string as argument return double queotes
-    if (value === '') return `'${value}'`;
+    if ((value === '') || (value.length > 1)) return `'${value}'`;
     // in case value is Strig we have to return value between quote simbols
-    if (value.length > 1) return `'${value}'`;
+    //if (value.length > 1) return `'${value}'`;
     return value;
   }
   return '[complex value]';
