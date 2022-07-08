@@ -34,6 +34,31 @@ const processUniqArray = (diffArr, obj, opType) => {
   return outArr;
 };
 
+const processCommonArray = (obj1, obj2, acc, key) => {
+  if (!_.isObject(obj1[key]) || (!_.isObject(obj2[key]))) {
+    const outObj1 = {};
+    outObj1[`${key}`] = objKeySort(obj1[key]);
+    // in case values are same
+    if (obj1[key] === obj2[key]) {
+      acc.push([keep, outObj1]);
+      return acc;
+    }
+    // otherwise values are different
+    outObj1[`${key}`] = objKeySort(obj1[key]);
+    acc.push([uptDel, outObj1]);
+    const outObj2 = {};
+    outObj2[`${key}`] = objKeySort(obj2[key]);
+    acc.push([uptAdd, outObj2]);
+    return acc;
+  }
+  // in case obj1[key] and obj2[key] are objects
+  const outObj1 = {};
+  // eslint-disable-next-line no-use-before-define
+  outObj1[`${key}`] = generateRezultArray(obj1[key], obj2[key], '');
+  acc.push([keep, outObj1]);
+  return acc;
+};
+
 const generateRezultArray = (obj1, obj2) => {
   // eslint-disable-next-line max-len
   // find the removed items in flat array
@@ -46,29 +71,7 @@ const generateRezultArray = (obj1, obj2) => {
   const diffArr = _.concat(removedArr, addedArr);
   const tempDiffArr = _.concat(tempRemovedArr, tempAddedArr);
   const commonArr = _.difference(Object.keys(obj1), tempDiffArr)
-    .reduce((acc, key) => {
-      if (!_.isObject(obj1[key]) || (!_.isObject(obj2[key]))) {
-        const outObj1 = {};
-        outObj1[`${key}`] = objKeySort(obj1[key]);
-        // in case values are same
-        if (obj1[key] === obj2[key]) {
-          acc.push([keep, outObj1]);
-          return acc;
-        }
-        // otherwise values are different
-        outObj1[`${key}`] = objKeySort(obj1[key]);
-        acc.push([uptDel, outObj1]);
-        const outObj2 = {};
-        outObj2[`${key}`] = objKeySort(obj2[key]);
-        acc.push([uptAdd, outObj2]);
-        return acc;
-      }
-      // in case obj1[key] and obj2[key] are objects
-      const outObj1 = {};
-      outObj1[`${key}`] = generateRezultArray(obj1[key], obj2[key], '');
-      acc.push([keep, outObj1]);
-      return acc;
-    }, []);
+    .reduce((acc, key) => processCommonArray(obj1, obj2, acc, key), []);
   const outArr = _.concat(diffArr, commonArr)
     // sort array by names
     .sort((a, b) => {
