@@ -6,6 +6,8 @@ import {
   add, del, uptAdd, uptDel, keep,
 } from './constants.js';
 
+const keySorting = (a, b) => ((Object.keys(a[1])[0] < Object.keys(b[1])[0]) ? -1 : (((Object.keys(a[1])[0] > Object.keys(b[1])[0]) ? 1 : 0)));
+
 const objKeySort = (obj) => {
   // transformation of the object to [operation, {key: value}] array, sorted by key
   if (!_.isObject(obj)) return obj;
@@ -17,10 +19,7 @@ const objKeySort = (obj) => {
       acc.push([keep, outObj]);
       return acc;
     }, [])
-    .sort((a, b) => {
-      const outInt = (Object.keys(a[1])[0] < Object.keys(b[1])[0]) ? -1 : (((Object.keys(a[1])[0] > Object.keys(b[1])[0]) ? 1 : 0));
-      return outInt;
-    });
+    .sort((a, b) => keySorting(a, b));
   return outArr;
 };
 
@@ -74,11 +73,7 @@ const generateRezultArray = (obj1, obj2) => {
     .reduce((acc, key) => processCommonArray(obj1, obj2, acc, key), []);
   const outArr = _.concat(diffArr, commonArr)
     // sort array by names
-    .sort((a, b) => {
-      const outInt = (Object.keys(a[1])[0] < Object.keys(b[1])[0]) ? -1 : (((Object.keys(a[1])[0] > Object.keys(b[1])[0]) ? 1 : 0));
-      return outInt;
-    });
-
+    .sort((a, b) => keySorting(a, b));
   return outArr;
 };
 
