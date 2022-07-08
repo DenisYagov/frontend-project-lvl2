@@ -4,7 +4,6 @@
 import { readFileSync } from 'fs';
 import compareFiles from '../src/coreComparator.js';
 import { formatOutputValue } from '../src/formatters/json.js';
-import isString from '../src/stringCheck.js';
 import { generateRezultArray, objKeySort } from '../src/libComporator.js';
 import {
   add, del, uptAdd, uptDel, keep,
@@ -74,20 +73,6 @@ test('check generateRezultArray function in libComporator file', () => {
     .toEqual([[del, { a: 1 }], [keep, { c: [[uptDel, { d: 3 }], [uptAdd, { d: 4 }]] }]]);
   expect(generateRezultArray({ c: { d: 3 } }, { a: 1, c: { d: 4 } }, ''))
     .toEqual([[add, { a: 1 }], [keep, { c: [[uptDel, { d: 3 }], [uptAdd, { d: 4 }]] }]]);
-});
-
-test('check isString function', () => {
-  expect(isString('fgh')).toEqual(true);
-  expect(isString(200)).toEqual(true);
-  expect(isString({ a: 'b' })).toEqual(false);
-  expect(isString({ b: 200 })).toEqual(false);
-  expect(isString(['a', 'b', 'c'])).toEqual(true);
-  expect(isString([1, 2, 3])).toEqual(true);
-  expect(isString({ b: { a: 200 } })).toEqual(false);
-  expect(isString({ b: { a: 200 }, c: 200 })).toEqual(false);
-  expect(isString('')).toEqual(true);
-  expect(isString(null)).toEqual(true);
-  expect(isString(undefined)).toEqual(true);
 });
 
 test('compare flat files', () => {

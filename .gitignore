@@ -1,3 +1,4 @@
 /node_modules
 ./file1.json
 ./src/protoComporator.js
+./src/stringCheck.js
