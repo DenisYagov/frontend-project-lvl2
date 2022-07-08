@@ -19,19 +19,21 @@ const formatOutputValue = (value) => {
 };
 
 const startingString = (cellArray) => {
-  const outStr = `"${preSym[cellArray[0]]}" "${cellArray[1]}": `;
+  const currentKey = Object.keys(cellArray[1])[0];
+  const outStr = `"${preSym[cellArray[0]]}" "${currentKey}": `;
   return outStr;
 };
 
 const processJsonString = (inputArray) => {
 // make Stylish format
   const outStr = inputArray.reduce((acc, cellArray) => {
-    if (!Array.isArray(cellArray[2])) {
+    const currentValue = Object.values(cellArray[1])[0];
+    if (!Array.isArray(currentValue)) {
     // we having just a termination
-      acc += `${startingString(cellArray)}${formatOutputValue(cellArray[2])},`;
+      acc += `${startingString(cellArray)}${formatOutputValue(currentValue)},`;
     } else {
     // we having the branch
-      acc += `${startingString(cellArray)}{${processJsonString(cellArray[2])}}`;
+      acc += `${startingString(cellArray)}{${processJsonString(currentValue)}}`;
     }
     return acc;
   }, '');

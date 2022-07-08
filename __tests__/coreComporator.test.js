@@ -143,8 +143,8 @@ test('compare multylevel multyformat files', () => {
   comparation(f9, f10, 'rez42.txt', 'stylish');
   comparation(f8, f8, 'rez43.txt', 'stylish');
   comparation(f7, f8, 'rez51.txt', 'plain');
-//  comparation(f8, f7, 'rez52.txt', 'plain');
-//  comparation(f7, f8, 'rez53.txt', 'json');
-//  comparation(f8, f7, 'rez54.txt', 'json');
+  comparation(f8, f7, 'rez52.txt', 'plain');
+  comparation(f7, f8, 'rez53.txt', 'json');
+  comparation(f8, f7, 'rez54.txt', 'json');
 //  comparation(f8, f8, 'rez55.txt', 'json');
 });
