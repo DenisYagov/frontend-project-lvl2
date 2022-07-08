@@ -24,24 +24,24 @@ const objKeySort = (obj) => {
   return outArr;
 };
 
+const processUniqArray = (diffArr, obj, opType) => {
+  const outArr = diffArr.map((key) => {
+    const outObj = {};
+    outObj[`${key}`] = objKeySort(obj[key]);
+    const out = [opType, outObj];
+    return out;
+  });
+  return outArr;
+};
+
 const generateRezultArray = (obj1, obj2) => {
   // eslint-disable-next-line max-len
   // find the removed items in flat array
   const tempRemovedArr = _.difference(Object.keys(obj1), Object.keys(obj2));
-  const removedArr = tempRemovedArr.map((key) => {
-    const outObj = {};
-    outObj[`${key}`] = objKeySort(obj1[key]);
-    const out = [del, outObj];
-    return out;
-  });
+  const removedArr = processUniqArray(tempRemovedArr, obj1, del);
   // find the added items in flat array
   const tempAddedArr = _.difference(Object.keys(obj2), Object.keys(obj1));
-  const addedArr = tempAddedArr.map((key) => {
-    const outObj = {};
-    outObj[`${key}`] = objKeySort(obj2[key]);
-    const out = [add, outObj];
-    return out;
-  });
+  const addedArr = processUniqArray(tempAddedArr, obj2, add);
   // find the common items in flat array
   const diffArr = _.concat(removedArr, addedArr);
   const tempDiffArr = _.concat(tempRemovedArr, tempAddedArr);
