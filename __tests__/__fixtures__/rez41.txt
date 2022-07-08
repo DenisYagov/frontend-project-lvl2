@@ -23,7 +23,7 @@
     foo: bar
   - nest: str
   + nest: {
-    + key: value
+      key: value
   }
 }
 + group2: {

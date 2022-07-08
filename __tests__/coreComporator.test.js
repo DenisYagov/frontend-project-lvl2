@@ -116,7 +116,7 @@ test('compare flat files', () => {
   // different files
   comparation(f1, f6, 'rez3.txt');
 });
-/*
+
 test('compare multylevel files', () => {
 // comparation of multylevel files
   comparation(f7, f8, 'rez42.txt');
@@ -127,7 +127,7 @@ test('compare multylevel files', () => {
   comparation(f10, f10, 'rez43.txt');
   comparation(f10, f8, 'rez43.txt');
 });
-/*
+
 test('formatOutputValue function test', () => {
   expect(formatOutputValue('')).toEqual('""');
   expect(formatOutputValue('null')).toEqual(null);
@@ -143,8 +143,8 @@ test('compare multylevel multyformat files', () => {
   comparation(f9, f10, 'rez42.txt', 'stylish');
   comparation(f8, f8, 'rez43.txt', 'stylish');
   comparation(f7, f8, 'rez51.txt', 'plain');
-  comparation(f8, f7, 'rez52.txt', 'plain');
-  comparation(f7, f8, 'rez53.txt', 'json');
-  comparation(f8, f7, 'rez54.txt', 'json');
-  comparation(f8, f8, 'rez55.txt', 'json');
-}); */
+//  comparation(f8, f7, 'rez52.txt', 'plain');
+//  comparation(f7, f8, 'rez53.txt', 'json');
+//  comparation(f8, f7, 'rez54.txt', 'json');
+//  comparation(f8, f8, 'rez55.txt', 'json');
+});

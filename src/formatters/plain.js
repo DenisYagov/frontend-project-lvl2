@@ -8,11 +8,12 @@ const CoreString = ['was added with value: ', 'was removed', ' to ', 'was update
 const ent = String.fromCharCode(10); // enter symbol
 
 const complexValueString = (value) => {
+  if (value === null) return null;
   if (!Array.isArray(value)) {
-    // in case value is Strig we have to return value between quote simbols
-    if (value.length > 1) return `'${value}'`;
     // in case we heving empty string as argument return double queotes
     if (value === '') return `'${value}'`;
+    // in case value is Strig we have to return value between quote simbols
+    if (value.length > 1) return `'${value}'`;
     return value;
   }
   return '[complex value]';
@@ -20,9 +21,11 @@ const complexValueString = (value) => {
 
 const plainString = (cellArray, PropertyName) => {
   // string in plain format output
+  const currentValue = Object.values(cellArray[1])[0];
+  const currentKey = Object.keys(cellArray[1])[0];
   // in most cases this will be the common starting:
-  const startingString = `'${`${PropertyName}.${cellArray[1]}' ${CoreString[cellArray[0]]}`.slice(1)}`;
-  const val = complexValueString(cellArray[2]);
+  const startingString = `'${`${PropertyName}.${currentKey}' ${CoreString[cellArray[0]]}`.slice(1)}`;
+  const val = complexValueString(currentValue);
   switch (cellArray[0]) {
     case add: return `Property ${startingString}${val}${ent}`;
     case del: return `Property ${startingString}${ent}`;
@@ -33,6 +36,28 @@ const plainString = (cellArray, PropertyName) => {
   }
 };
 
+const proecssPlainString = (inputArray, PropertyName = '') => {
+  // make plain format
+  const outStr = inputArray.reduce((acc, cellArray) => {
+    const currentValue = Object.values(cellArray[1])[0];
+    const currentKey = Object.keys(cellArray[1])[0];
+    if (!Array.isArray(currentValue)) {
+      // we having just a termination
+      return (acc + plainString(cellArray, PropertyName));
+    }
+    // we having the branch
+    // in case we having just a value to keep, we have to check operations
+    // inside of branch
+    if (cellArray[0] === keep) {
+      return (acc + proecssPlainString(currentValue, `${PropertyName}.${currentKey}`));
+    }
+    // otherwise we just add the string
+    return (acc + plainString(cellArray, PropertyName));
+  }, '');
+  return outStr;
+};
+
+/*
 const proecssPlainString = (inputArray, PropertyName = '') => {
 // make Stylish format
   const outStr = inputArray.reduce((acc, cellArray) => {
@@ -51,7 +76,7 @@ const proecssPlainString = (inputArray, PropertyName = '') => {
   }, '');
   return outStr;
 };
-
+*/
 // removes last enter symbol after proecssStylishString procedure
 const makePlainString = (inputArray) => {
   const outStr = proecssPlainString(inputArray).slice(0, -1);
