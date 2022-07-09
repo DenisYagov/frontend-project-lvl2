@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul  8 09:39:10 2022
+# Make data base, printed on Sat Jul  9 10:15:06 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ SNAP_DATA = /var/snap/code/100
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:39212
+JOURNAL_STREAM = 8:40034
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -71,7 +71,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 _ = /snap/code/100/usr/share/code/code
 # environment
-MANAGERPID = 1060
+MANAGERPID = 1091
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +87,7 @@ PATH = /home/bigdog/.npm-global/bin:/home/bigdog/.npm-global/bin:/usr/local/sbin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1396,unix/Bigdog-ASUS:/tmp/.ICE-unix/1396
+SESSION_MANAGER = local/Bigdog-ASUS:@/tmp/.ICE-unix/1464,unix/Bigdog-ASUS:/tmp/.ICE-unix/1464
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -103,7 +103,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = de227069366046128d42138142d3e224
+INVOCATION_ID = e4fef7f6b0084fabaabf1099f493e730
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/100/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -115,7 +115,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1992
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3572
 # automatic
 %F = $(notdir $%)
 # environment
@@ -127,7 +127,7 @@ PWD = /home/bigdog/frontend-project-lvl2
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1358
+SSH_AGENT_PID = 1424
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -257,7 +257,7 @@ LC_ADDRESS = ru_RU.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2067
+VSCODE_PID = 3635
 # variable set hash-table stats:
 # Load=124/1024=12%, Rehash=0, Collisions=22/149=15%
 
@@ -279,6 +279,9 @@ VSCODE_PID = 2067
 
 # Not a target:
 all:
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -287,9 +290,6 @@ all:
 test-coverage:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 18):
 	npm test -- --coverage --coverageProvider=v8
@@ -371,6 +371,6 @@ install: install-deps
 # strcache performance: lookups = 43 / hit rate = 30%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Fri Jul  8 09:39:10 2022
+# Finished Make data base on Sat Jul  9 10:15:07 2022
 
  
