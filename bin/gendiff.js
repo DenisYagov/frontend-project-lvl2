@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable no-unused-expressions */
 import { Command } from 'commander';
-import compareFiles from '../src/index.js';
+import compareFiles from '../index.js';
 import { defFormat } from '../src/formatters/index.js';
 
 const program = new Command();
