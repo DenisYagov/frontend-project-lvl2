@@ -10,6 +10,7 @@ program compares the set of parameters placed in two files in json or yaml forma
 
 <li><i>gendiff -f plain [filename1] [filename2]</i>  - compares two files and return string of difference in plain format</li>
 </ul>
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/DenisYagov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DenisYagov/frontend-project-lvl2/actions)
 
