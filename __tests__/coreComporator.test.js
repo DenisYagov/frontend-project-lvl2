@@ -9,10 +9,10 @@ import {
 } from '../src/constants.js';
 
 // processing files:
-const f7 = './__tests__/__fixtures__/file7.json';
-const f8 = './__tests__/__fixtures__/file8.json';
-const f9 = './__tests__/__fixtures__/file9.yaml';
-const f10 = './__tests__/__fixtures__/file10.yaml';
+const f7 = './__fixtures__/file7.json';
+const f8 = './__fixtures__/file8.json';
+const f9 = './__fixtures__/file9.yaml';
+const f10 = './__fixtures__/file10.yaml';
 
 const objKeySortParams = [
   [{ c: 0 }, [[keep, { c: 0 }]]],
@@ -84,6 +84,6 @@ test.each(comparationParams)('compare multylevel multyformat files %s, %s', asyn
     args: [file1, file2],
     _optionValues: { format: f },
   };
-  const rez1 = readFileSync(`./__tests__/__fixtures__/${eqFile}`).toString();
+  const rez1 = readFileSync(`./__fixtures__/${eqFile}`).toString();
   expect(compareFiles(rawData)).toBe(rez1);
 });
