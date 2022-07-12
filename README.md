@@ -1,3 +1,12 @@
+Functionality:
+program compares the set of parameters placed in two files in json or yaml format. Program checks names of parameters and its values. SW already works with complex parameters. Output format can be tuned in command line interface.
+
+examples:
+gendiff -h - help
+gendiff [filename1] [filename2] - compares two files and return string of difference in stylish format
+gendiff -f json [filename1] [filename2]  - compares two files and return string of difference in json format
+gendiff -f plain [filename1] [filename2]  - compares two files and return string of difference in plain format
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/DenisYagov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DenisYagov/frontend-project-lvl2/actions)
 
