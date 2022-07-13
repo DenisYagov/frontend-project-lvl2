@@ -8,7 +8,7 @@
     "test": "npx jest"
   },
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "src/libComporator.js"
   },
   "repository": {
     "type": "git",
