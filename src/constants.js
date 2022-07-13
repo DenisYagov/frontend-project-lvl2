@@ -1,5 +1,5 @@
-const [add, del, uptAdd, uptDel, keep] = ['0', '1', '2', '3', '4'];
+const [ADD, DEL, UPTADD, UPTDEL, KEEP] = ['0', '1', '2', '3', '4'];
 
 export {
-  add, del, uptAdd, uptDel, keep,
+  ADD, DEL, UPTADD, UPTDEL, KEEP,
 };

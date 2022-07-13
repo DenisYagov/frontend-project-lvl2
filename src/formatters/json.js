@@ -3,9 +3,10 @@
 /* eslint-disable no-param-reassign */
 // preSym represents symbols of { add, del, uptAdd, uptDel, keep } from '../coreComparator.js'
 // it is located at same address offset
-const preSym = ['/nadded parameter', '/ndeleted parameter',
+/* const preSym = ['/nadded parameter', '/ndeleted parameter',
   '/nnew key: value', '/nparameter was updated old key: value',
-  '/nparameter was kept'];
+  '/nparameter was kept']; */
+const preSym = ['/nadded parameter', '/ndeleted parameter', '/nnew key: value', '/nparameter was updated old key: value', '/nparameter was kept'];
 
 const formatOutputValue = (value) => {
   // in case value is pure string return string in quotes

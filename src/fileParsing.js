@@ -3,9 +3,12 @@ import { load } from 'js-yaml';
 const getObjFromString = (dataStr, type) => {
   // return object from string dataStr
   // in case yml string format on input return parse yml type
-  if (type === 'yml') return load(dataStr);
-  // in case it wasnt yml file return parsing of json
-  return JSON.parse(dataStr);
+  switch (type) {
+    case 'yml': return load(dataStr);
+    case 'yaml': return load(dataStr);
+    case 'json': return JSON.parse(dataStr);
+    default: throw new Error('Unknown file extention!');
+  }
 };
 
 export default getObjFromString;

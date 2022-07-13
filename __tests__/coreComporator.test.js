@@ -5,7 +5,7 @@ import compareFiles from '../src/coreComparator.js';
 import { formatOutputValue } from '../src/formatters/json.js';
 import { generateRezultArray, objKeySort } from '../src/libComporator.js';
 import {
-  add, del, uptAdd, uptDel, keep,
+  ADD, DEL, UPTADD, UPTDEL, KEEP,
 } from '../src/constants.js';
 
 // processing files:
@@ -15,14 +15,14 @@ const f9 = './__fixtures__/file9.yaml';
 const f10 = './__fixtures__/file10.yaml';
 
 const objKeySortParams = [
-  [{ c: 0 }, [[keep, { c: 0 }]]],
-  [{ a: 0, b: 1 }, [[keep, { a: 0 }], [keep, { b: 1 }]]],
-  [{ b: 0, a: 1 }, [[keep, { a: 1 }], [keep, { b: 0 }]]],
-  [{ a: 0, b: { c: 1 } }, [[keep, { a: 0 }], [keep, { b: [[keep, { c: 1 }]] }]]],
-  [{ a: 0, b: { c: 1, d: 3 } }, [[keep, { a: 0 }], [keep, { b: [[keep, { c: 1 }], [keep, { d: 3 }]] }]]],
-  [{ a: 0, b: { d: 1, c: 3 } }, [[keep, { a: 0 }], [keep, { b: [[keep, { c: 3 }], [keep, { d: 1 }]] }]]],
-  [{ b: 0, a: { d: 1, c: 3 } }, [[keep, { a: [[keep, { c: 3 }], [keep, { d: 1 }]] }], [keep, { b: 0 }]]],
-  [{ e: 33, b: 0, a: { d: 1, c: 3 } }, [[keep, { a: [[keep, { c: 3 }], [keep, { d: 1 }]] }], [keep, { b: 0 }], [keep, { e: 33 }]]],
+  [{ c: 0 }, [[KEEP, { c: 0 }]]],
+  [{ a: 0, b: 1 }, [[KEEP, { a: 0 }], [KEEP, { b: 1 }]]],
+  [{ b: 0, a: 1 }, [[KEEP, { a: 1 }], [KEEP, { b: 0 }]]],
+  [{ a: 0, b: { c: 1 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 1 }]] }]]],
+  [{ a: 0, b: { c: 1, d: 3 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 1 }], [KEEP, { d: 3 }]] }]]],
+  [{ a: 0, b: { d: 1, c: 3 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }]]],
+  [{ b: 0, a: { d: 1, c: 3 } }, [[KEEP, { a: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }], [KEEP, { b: 0 }]]],
+  [{ e: 33, b: 0, a: { d: 1, c: 3 } }, [[KEEP, { a: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }], [KEEP, { b: 0 }], [KEEP, { e: 33 }]]],
 ];
 
 test.each(objKeySortParams)('.objKeySort(%o) => %o', async (param, expected) => {
@@ -31,18 +31,18 @@ test.each(objKeySortParams)('.objKeySort(%o) => %o', async (param, expected) => 
 });
 
 const generateRezultArrayParams = [
-  [{ a: 0 }, {}, [[del, { a: 0 }]]],
-  [{ a: 0 }, { a: 1 }, [[uptDel, { a: 0 }], [uptAdd, { a: 1 }]]],
-  [{ a: 1 }, { a: 1 }, [[keep, { a: 1 }]]],
-  [{ a: '1' }, { a: 1 }, [[uptDel, { a: '1' }], [uptAdd, { a: 1 }]]],
-  [{ a: '1' }, { a: '1' }, [[keep, { a: '1' }]]],
-  [{ a: 0 }, { b: 1 }, [[del, { a: 0 }], [add, { b: 1 }]]],
-  [{ a: 0, c: 3 }, { b: 1 }, [[del, { a: 0 }], [add, { b: 1 }], [del, { c: 3 }]]],
-  [{ c: { d: 3 } }, { c: 4 }, [[uptDel, { c: [[keep, { d: 3 }]] }], [uptAdd, { c: 4 }]]],
-  [{ c: 4 }, { c: { d: 4 } }, [[uptDel, { c: 4 }], [uptAdd, { c: [[keep, { d: 4 }]] }]]],
-  [{ c: { d: 3 } }, { c: { d: 4 } }, [[keep, { c: [[uptDel, { d: 3 }], [uptAdd, { d: 4 }]] }]]],
-  [{ a: 1, c: { d: 3 } }, { c: { d: 4 } }, [[del, { a: 1 }], [keep, { c: [[uptDel, { d: 3 }], [uptAdd, { d: 4 }]] }]]],
-  [{ c: { d: 3 } }, { a: 1, c: { d: 4 } }, [[add, { a: 1 }], [keep, { c: [[uptDel, { d: 3 }], [uptAdd, { d: 4 }]] }]]],
+  [{ a: 0 }, {}, [[DEL, { a: 0 }]]],
+  [{ a: 0 }, { a: 1 }, [[UPTDEL, { a: 0 }], [UPTADD, { a: 1 }]]],
+  [{ a: 1 }, { a: 1 }, [[KEEP, { a: 1 }]]],
+  [{ a: '1' }, { a: 1 }, [[UPTDEL, { a: '1' }], [UPTADD, { a: 1 }]]],
+  [{ a: '1' }, { a: '1' }, [[KEEP, { a: '1' }]]],
+  [{ a: 0 }, { b: 1 }, [[DEL, { a: 0 }], [ADD, { b: 1 }]]],
+  [{ a: 0, c: 3 }, { b: 1 }, [[DEL, { a: 0 }], [ADD, { b: 1 }], [DEL, { c: 3 }]]],
+  [{ c: { d: 3 } }, { c: 4 }, [[UPTDEL, { c: [[KEEP, { d: 3 }]] }], [UPTADD, { c: 4 }]]],
+  [{ c: 4 }, { c: { d: 4 } }, [[UPTDEL, { c: 4 }], [UPTADD, { c: [[KEEP, { d: 4 }]] }]]],
+  [{ c: { d: 3 } }, { c: { d: 4 } }, [[KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
+  [{ a: 1, c: { d: 3 } }, { c: { d: 4 } }, [[DEL, { a: 1 }], [KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
+  [{ c: { d: 3 } }, { a: 1, c: { d: 4 } }, [[ADD, { a: 1 }], [KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
 ];
 
 test.each(generateRezultArrayParams)('compare objects %o and %o', (obj1, obj2, rez) => {

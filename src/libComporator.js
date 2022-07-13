@@ -3,7 +3,7 @@
 // Library functions based object comparation
 import _ from 'lodash';
 import {
-  add, del, uptAdd, uptDel, keep,
+  ADD, DEL, UPTADD, UPTDEL, KEEP,
 } from './constants.js';
 
 const keySorting = (a, b) => ((Object.keys(a[1])[0] < Object.keys(b[1])[0]) ? -1 : (((Object.keys(a[1])[0] > Object.keys(b[1])[0]) ? 1 : 0)));
@@ -16,7 +16,7 @@ const objKeySort = (obj) => {
     .reduce((acc, key) => {
       const outObj = {};
       outObj[`${key}`] = objKeySort(obj[key]);
-      acc.push([keep, outObj]);
+      acc.push([KEEP, outObj]);
       return acc;
     }, [])
     .sort((a, b) => keySorting(a, b));
@@ -39,22 +39,22 @@ const processCommonArray = (obj1, obj2, acc, key) => {
     outObj1[`${key}`] = objKeySort(obj1[key]);
     // in case values are same
     if (obj1[key] === obj2[key]) {
-      acc.push([keep, outObj1]);
+      acc.push([KEEP, outObj1]);
       return acc;
     }
     // otherwise values are different
     outObj1[`${key}`] = objKeySort(obj1[key]);
-    acc.push([uptDel, outObj1]);
+    acc.push([UPTDEL, outObj1]);
     const outObj2 = {};
     outObj2[`${key}`] = objKeySort(obj2[key]);
-    acc.push([uptAdd, outObj2]);
+    acc.push([UPTADD, outObj2]);
     return acc;
   }
   // in case obj1[key] and obj2[key] are objects
   const outObj1 = {};
   // eslint-disable-next-line no-use-before-define
   outObj1[`${key}`] = generateRezultArray(obj1[key], obj2[key], '');
-  acc.push([keep, outObj1]);
+  acc.push([KEEP, outObj1]);
   return acc;
 };
 
@@ -62,10 +62,10 @@ const generateRezultArray = (obj1, obj2) => {
   // eslint-disable-next-line max-len
   // find the removed items in flat array
   const tempRemovedArr = _.difference(Object.keys(obj1), Object.keys(obj2));
-  const removedArr = processUniqArray(tempRemovedArr, obj1, del);
+  const removedArr = processUniqArray(tempRemovedArr, obj1, DEL);
   // find the added items in flat array
   const tempAddedArr = _.difference(Object.keys(obj2), Object.keys(obj1));
-  const addedArr = processUniqArray(tempAddedArr, obj2, add);
+  const addedArr = processUniqArray(tempAddedArr, obj2, ADD);
   // find the common items in flat array
   const diffArr = _.concat(removedArr, addedArr);
   const tempDiffArr = _.concat(tempRemovedArr, tempAddedArr);

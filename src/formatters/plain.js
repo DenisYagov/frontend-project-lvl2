@@ -1,5 +1,5 @@
 import {
-  add, del, uptAdd, uptDel, keep,
+  ADD, DEL, UPTADD, UPTDEL, KEEP,
 } from '../constants.js';
 // preSym represents symbols of { add, del, uptAdd, uptDel, keep } from '../coreComparator.js'
 // it is located at same address offset
@@ -26,11 +26,11 @@ const plainString = (cellArray, PropertyName) => {
   const startingString = `'${`${PropertyName}.${currentKey}' ${CoreString[cellArray[0]]}`.slice(1)}`;
   const val = complexValueString(currentValue);
   switch (cellArray[0]) {
-    case add: return `Property ${startingString}${val}${ent}`;
-    case del: return `Property ${startingString}${ent}`;
-    case uptDel: return `Property ${startingString}${val}`;
-    case uptAdd: return `${CoreString[cellArray[0]]}${val}${ent}`;
-    case keep: return '';
+    case ADD: return `Property ${startingString}${val}${ent}`;
+    case DEL: return `Property ${startingString}${ent}`;
+    case UPTDEL: return `Property ${startingString}${val}`;
+    case UPTADD: return `${CoreString[cellArray[0]]}${val}${ent}`;
+    case KEEP: return '';
     default: throw new Error('unexpected situation Error. Incoming type of operation is out of range');
   }
 };
@@ -47,7 +47,7 @@ const proecssPlainString = (inputArray, PropertyName = '') => {
     // we having the branch
     // in case we having just a value to keep, we have to check operations
     // inside of branch
-    if (cellArray[0] === keep) {
+    if (cellArray[0] === KEEP) {
       return (acc + proecssPlainString(currentValue, `${PropertyName}.${currentKey}`));
     }
     // otherwise we just add the string
