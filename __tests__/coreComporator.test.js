@@ -80,10 +80,6 @@ const comparationParams = [
 ];
 
 test.each(comparationParams)('compare multylevel multyformat files %s, %s', async (file1, file2, eqFile, f = '') => {
-  const rawData = {
-    args: [file1, file2],
-    _optionValues: { format: f },
-  };
   const rez1 = readFileSync(`./__fixtures__/${eqFile}`).toString();
-  expect(compareFiles(rawData)).toBe(rez1);
+  expect(compareFiles(file1, file2, f)).toBe(rez1);
 });

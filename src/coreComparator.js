@@ -20,15 +20,14 @@ const getObjectFromFile = (inputFile) => {
   return getObjFromString(dataStr, fileExt);
 };
 
-const compareFiles = (rawData) => {
+const compareFiles = (file1, file2, format = 'stylish') => {
   // check if all data presented
-  if (rawData.args[0] === undefined) return '';
+  if (file1 === undefined) return '';
   // make objects
-  const obj1 = getObjectFromFile(rawData.args[0]);
-  const obj2 = getObjectFromFile(rawData.args[1]);
-  console.log('rawData._optionValues.format = ', rawData._optionValues.format);
+  const obj1 = getObjectFromFile(file1);
+  const obj2 = getObjectFromFile(file2);
 
-  return makeStringFromArray(rawData._optionValues.format, compareObjects(obj1, obj2));
+  return makeStringFromArray(format, compareObjects(obj1, obj2));
 };
 
 export default compareFiles;

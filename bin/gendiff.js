@@ -17,7 +17,8 @@ program
 
   .action((fileName1, lineOptions, rawData) => {
   // compare files based on input raw data
-    const outStr = compareFiles(rawData);
+    // eslint-disable-next-line no-underscore-dangle
+    const outStr = compareFiles(rawData.args[0], rawData.args[1], rawData._optionValues.format);
     // in case no input files return null
     (outStr.length !== 0) ? console.log(outStr) : 'files fully compatible';
   });
