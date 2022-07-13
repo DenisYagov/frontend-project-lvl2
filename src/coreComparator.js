@@ -1,7 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
-/* eslint-disable no-nested-ternary */
 import { readFileSync } from 'node:fs';
 import { posix } from 'node:path';
 import getObjFromString from './fileParsing.js';
