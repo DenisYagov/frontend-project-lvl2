@@ -2,17 +2,20 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
+import { posix } from 'node:path';
 import getObjFromString from './fileParsing.js';
 import makeStringFromArray from './formatters/index.js';
 import compareObjects from './libComporator.js';
 
-const getObjectFromFile = (file) => {
+// const path = require('node:path');
+
+const getObjectFromFile = (inputFile) => {
   // return object from file
-  // get extention of file via splitting to two parts by '.' symbal and return second
-  // value of array
-  const dotArr = file.split('.');
-  const fileExt = dotArr[dotArr.length - 1];
+  // make absolut path from any type of input
+  const file = posix.resolve(inputFile);
+  // get extention of the file
+  const fileExt = posix.extname(file);
   const dataStr = readFileSync(file);
   return getObjFromString(dataStr, fileExt);
 };
