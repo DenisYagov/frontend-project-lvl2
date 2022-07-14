@@ -30,8 +30,8 @@ const objKeySortParams = [
         value: [{ type: KEEP, key: 'c', value: 1 },
           { type: KEEP, key: 'd', value: 3 }],
       }]],
-  [{ a: 0, b: { d: 88, c: 3 } },
-    [{ type: KEEP, key: 'a', value: 0 },
+  [{ a: '0', b: { d: 88, c: 3 } },
+    [{ type: KEEP, key: 'a', value: '0' },
       {
         type: KEEP,
         key: 'b',
