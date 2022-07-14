@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "second project at Hexlet",
-  "main": "src/libComporator.js",
+  "main": "src/coreComporator.js",
   "type": "module",
   "scripts": {
     "test": "npx jest"
