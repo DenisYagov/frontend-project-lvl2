@@ -15,14 +15,47 @@ const f9 = './__fixtures__/file9.yaml';
 const f10 = './__fixtures__/file10.yaml';
 
 const objKeySortParams = [
-  [{ c: 0 }, [[KEEP, { c: 0 }]]],
-  [{ a: 0, b: 1 }, [[KEEP, { a: 0 }], [KEEP, { b: 1 }]]],
-  [{ b: 0, a: 1 }, [[KEEP, { a: 1 }], [KEEP, { b: 0 }]]],
-  [{ a: 0, b: { c: 1 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 1 }]] }]]],
-  [{ a: 0, b: { c: 1, d: 3 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 1 }], [KEEP, { d: 3 }]] }]]],
-  [{ a: 0, b: { d: 1, c: 3 } }, [[KEEP, { a: 0 }], [KEEP, { b: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }]]],
-  [{ b: 0, a: { d: 1, c: 3 } }, [[KEEP, { a: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }], [KEEP, { b: 0 }]]],
-  [{ e: 33, b: 0, a: { d: 1, c: 3 } }, [[KEEP, { a: [[KEEP, { c: 3 }], [KEEP, { d: 1 }]] }], [KEEP, { b: 0 }], [KEEP, { e: 33 }]]],
+  [{ c: 0 }, [{ type: KEEP, key: 'c', value: 0 }]],
+  [{ a: 0, c: 1 }, [{ type: KEEP, key: 'a', value: 0 }, { type: KEEP, key: 'c', value: 1 }]],
+  [{ b: 0, a: 1 },
+    [{ type: KEEP, key: 'a', value: 1 }, { type: KEEP, key: 'b', value: 0 }]],
+  [{ a: 0, b: { c: 1 } },
+    [{ type: KEEP, key: 'a', value: 0 },
+      { type: KEEP, key: 'b', value: [{ type: KEEP, key: 'c', value: 1 }] }]],
+  [{ a: 0, b: { c: 1, d: 3 } },
+    [{ type: KEEP, key: 'a', value: 0 },
+      {
+        type: KEEP,
+        key: 'b',
+        value: [{ type: KEEP, key: 'c', value: 1 },
+          { type: KEEP, key: 'd', value: 3 }],
+      }]],
+  [{ a: 0, b: { d: 1, c: 3 } },
+    [{ type: KEEP, key: 'a', value: 0 },
+      {
+        type: KEEP,
+        key: 'b',
+        value: [{ type: KEEP, key: 'c', value: 3 },
+          { type: KEEP, key: 'd', value: 1 }],
+      }]],
+  [{ b: 0, a: { d: 1, c: 3 } },
+    [
+      {
+        type: KEEP,
+        key: 'a',
+        value: [{ type: KEEP, key: 'c', value: 3 },
+          { type: KEEP, key: 'd', value: 1 }],
+      },
+      { type: KEEP, key: 'b', value: 0 }]],
+  [{ e: 33, b: 0, a: { d: 1, c: 3 } },
+    [{
+      type: KEEP,
+      key: 'a',
+      value: [{ type: KEEP, key: 'c', value: 3 },
+        { type: KEEP, key: 'd', value: 1 }],
+    },
+    { type: KEEP, key: 'b', value: 0 },
+    { type: KEEP, key: 'e', value: 33 }]],
 ];
 
 test.each(objKeySortParams)('.objKeySort(%o) => %o', async (param, expected) => {
@@ -31,18 +64,59 @@ test.each(objKeySortParams)('.objKeySort(%o) => %o', async (param, expected) => 
 });
 
 const generateRezultArrayParams = [
-  [{ a: 0 }, {}, [[DEL, { a: 0 }]]],
-  [{ a: 0 }, { a: 1 }, [[UPTDEL, { a: 0 }], [UPTADD, { a: 1 }]]],
-  [{ a: 1 }, { a: 1 }, [[KEEP, { a: 1 }]]],
-  [{ a: '1' }, { a: 1 }, [[UPTDEL, { a: '1' }], [UPTADD, { a: 1 }]]],
-  [{ a: '1' }, { a: '1' }, [[KEEP, { a: '1' }]]],
-  [{ a: 0 }, { b: 1 }, [[DEL, { a: 0 }], [ADD, { b: 1 }]]],
-  [{ a: 0, c: 3 }, { b: 1 }, [[DEL, { a: 0 }], [ADD, { b: 1 }], [DEL, { c: 3 }]]],
-  [{ c: { d: 3 } }, { c: 4 }, [[UPTDEL, { c: [[KEEP, { d: 3 }]] }], [UPTADD, { c: 4 }]]],
-  [{ c: 4 }, { c: { d: 4 } }, [[UPTDEL, { c: 4 }], [UPTADD, { c: [[KEEP, { d: 4 }]] }]]],
-  [{ c: { d: 3 } }, { c: { d: 4 } }, [[KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
-  [{ a: 1, c: { d: 3 } }, { c: { d: 4 } }, [[DEL, { a: 1 }], [KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
-  [{ c: { d: 3 } }, { a: 1, c: { d: 4 } }, [[ADD, { a: 1 }], [KEEP, { c: [[UPTDEL, { d: 3 }], [UPTADD, { d: 4 }]] }]]],
+  [{ a: 0 }, {}, [{ type: DEL, key: 'a', value: 0 }]],
+  [{ a: 0 }, { a: 1 },
+    [{ type: UPTDEL, key: 'a', value: 0 }, { type: UPTADD, key: 'a', value: 1 }]],
+  [{ a: 1 }, { a: 1 },
+    [{ type: KEEP, key: 'a', value: 1 }]],
+  [{ a: '1' }, { a: 1 },
+    [{ type: UPTDEL, key: 'a', value: '1' },
+      { type: UPTADD, key: 'a', value: 1 }]],
+  [{ a: '1' }, { a: '1' },
+    [{ type: KEEP, key: 'a', value: '1' }]],
+  [{ a: 0 }, { b: 1 },
+    [{ type: DEL, key: 'a', value: 0 },
+      { type: ADD, key: 'b', value: 1 }]],
+  [{ a: 0, c: 3 }, { b: 1 },
+    [{ type: DEL, key: 'a', value: 0 },
+      { type: ADD, key: 'b', value: 1 },
+      { type: DEL, key: 'c', value: 3 }]],
+  [{ c: { d: 3 } }, { c: 4 },
+    [
+      {
+        type: UPTDEL,
+        key: 'c',
+        value: [{ type: KEEP, key: 'd', value: 3 }],
+      },
+      { type: UPTADD, key: 'c', value: 4 }]],
+  [{ c: 4 }, { c: { d: 4 } },
+    [{ type: UPTDEL, key: 'c', value: 4 },
+      { type: UPTADD, key: 'c', value: [{ type: KEEP, key: 'd', value: 4 }] }]],
+  [{ c: { d: 3 } }, { c: { d: 4 } },
+    [{
+      type: KEEP,
+      key: 'c',
+      value: [
+        { type: UPTDEL, key: 'd', value: 3 },
+        { type: UPTADD, key: 'd', value: 4 }],
+    }]],
+  [{ a: 1, c: { d: 3 } }, { c: { d: 4 } },
+    [{ type: DEL, key: 'a', value: 1 },
+      {
+        type: KEEP,
+        key: 'c',
+        value: [
+          { type: UPTDEL, key: 'd', value: 3 },
+          { type: UPTADD, key: 'd', value: 4 }],
+      }]],
+  [{ c: { d: 3 } }, { a: 1, c: { d: 4 } },
+    [{ type: ADD, key: 'a', value: 1 },
+      {
+        type: KEEP,
+        key: 'c',
+        value: [{ type: UPTDEL, key: 'd', value: 3 },
+          { type: UPTADD, key: 'd', value: 4 }],
+      }]],
 ];
 
 test.each(generateRezultArrayParams)('compare objects %o and %o', (obj1, obj2, rez) => {

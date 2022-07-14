@@ -1,13 +1,12 @@
-/* eslint-disable max-len */
-/* eslint-disable no-nested-ternary */
 // Library functions based object comparation
 import _ from 'lodash';
 import {
   ADD, DEL, UPTADD, UPTDEL, KEEP,
 } from './constants.js';
 
-const keySorting = (a, b) => ((Object.keys(a[1])[0] < Object.keys(b[1])[0]) ? -1 : (((Object.keys(a[1])[0] > Object.keys(b[1])[0]) ? 1 : 0)));
-
+// eslint-disable-next-line max-len, no-nested-ternary
+const keySorting = (a, b) => ((a.key < b.key) ? -1 : (a.key > b.key) ? 1 : 0);
+/*
 const objKeySort = (obj) => {
   // transformation of the object to [operation, {key: value}] array, sorted by key
   if (!_.isObject(obj)) return obj;
@@ -22,7 +21,21 @@ const objKeySort = (obj) => {
     .sort((a, b) => keySorting(a, b));
   return outArr;
 };
-
+*/
+const objKeySort = (obj) => {
+  // transformation of the object to [{type : opType, key : key, value: value} ... {}]
+  // array, sorted by key
+  if (!_.isObject(obj)) return obj;
+  // we having the object
+  const outArr = Object.keys(obj)
+    .reduce((acc, key) => {
+      acc.push({ type: KEEP, key: `${key}`, value: objKeySort(obj[key]) });
+      return acc;
+    }, [])
+    .sort((a, b) => keySorting(a, b));
+  return outArr;
+};
+/*
 const processUniqArray = (diffArr, obj, opType) => {
   const outArr = diffArr.map((key) => {
     const outObj = {};
@@ -32,7 +45,19 @@ const processUniqArray = (diffArr, obj, opType) => {
   });
   return outArr;
 };
-
+*/
+const processUniqArray = (diffArr, obj, opType) => {
+  const outArr = diffArr.map((mapKey) => {
+    const outObj = {
+      type: opType,
+      key: mapKey,
+      value: objKeySort(obj[mapKey]),
+    };
+    return outObj;
+  });
+  return outArr;
+};
+/*
 const processCommonArray = (obj1, obj2, acc, key) => {
   if (!_.isObject(obj1[key]) || (!_.isObject(obj2[key]))) {
     const outObj1 = {};
@@ -55,6 +80,33 @@ const processCommonArray = (obj1, obj2, acc, key) => {
   // eslint-disable-next-line no-use-before-define
   outObj1[`${key}`] = generateRezultArray(obj1[key], obj2[key], '');
   acc.push([KEEP, outObj1]);
+  return acc;
+};
+*/
+const processCommonArray = (obj1, obj2, acc, inputKey) => {
+  if (!_.isObject(obj1[inputKey]) || (!_.isObject(obj2[inputKey]))) {
+    const outObj1 = {};
+    outObj1[`${inputKey}`] = objKeySort(obj1[inputKey]);
+    // in case values are same
+    if (obj1[inputKey] === obj2[inputKey]) {
+      acc.push({ type: KEEP, key: inputKey, value: obj1[inputKey] });
+      return acc;
+    }
+    // otherwise values are different
+    acc.push({ type: UPTDEL, key: inputKey, value: objKeySort(obj1[inputKey]) });
+    acc.push({ type: UPTADD, key: inputKey, value: objKeySort(obj2[inputKey]) });
+    return acc;
+  }
+  // in case obj1[key] and obj2[key] are objects
+  const outObj1 = {};
+  // eslint-disable-next-line no-use-before-define
+  outObj1[`${inputKey}`] = generateRezultArray(obj1[inputKey], obj2[inputKey]);
+  acc.push({
+    type: KEEP,
+    key: inputKey,
+    // eslint-disable-next-line no-use-before-define
+    value: generateRezultArray(obj1[inputKey], obj2[inputKey]),
+  });
   return acc;
 };
 

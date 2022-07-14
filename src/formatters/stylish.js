@@ -14,8 +14,8 @@ const makeOffset = (offset) => {
 const proecssStylishString = (inputArray, deep = '') => {
   // make Stylish format
   const outStr = inputArray.reduce((acc, cellArray) => {
-    const currentCellValue = Object.values(cellArray[1])[0];
-    const preString = `${deep}${preSym[cellArray[0]]} ${Object.keys(cellArray[1])[0]}: `;
+    const currentCellValue = cellArray.value;
+    const preString = `${deep}${preSym[cellArray.type]} ${cellArray.key}: `;
     if (!Array.isArray(currentCellValue)) {
     // we having just a termination
       acc += `${preString}${currentCellValue}${ent}`;
