@@ -42,7 +42,7 @@ const proecssStylishString = (inputArray, deep = '') => {
 
 // removes last enter symbol after proecssStylishString procedure
 const makeStilishString = (inputArray) => {
-  const outStr = proecssStylishString(inputArray).slice(0, -1);
+  const outStr = `{${ent}${proecssStylishString(inputArray).slice(0, -1)}${ent}}`;
   return outStr;
 };
 
