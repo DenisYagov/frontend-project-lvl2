@@ -8,17 +8,14 @@ const makeStringFromArray = (type, inputArray) => {
   switch (type) {
     case 'json':
     {
-      console.log('output format is json');
       return makeJsonString(inputArray);
     }
     case 'plain':
     {
-      console.log('outp ut format is plain');
       return makePlainString(inputArray);
     }
     default:
     {
-      console.log('output format is stylish as default');
       return makeStilishString(inputArray);
     }
   }

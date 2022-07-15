@@ -8,7 +8,7 @@ import generateRezultArray from '../src/libComporator.js';
 // eslint-disable-next-line import/no-duplicates
 import { objKeySort } from '../src/libComporator.js';
 import {
-  ADD, DEL, UPTADD, UPTDEL, KEEP,
+  ADD, DEL, CHANGED, KEEP,
 } from '../src/constants.js';
 
 // processing files:
@@ -69,58 +69,68 @@ test.each(objKeySortParams)('.objKeySort(%o) => %o', async (param, expected) => 
 const generateRezultArrayParams = [
   [{ a: 0 }, {}, [{ type: DEL, key: 'a', value: 0 }]],
   [{ a: 0 }, { a: 1 },
-    [{ type: UPTDEL, key: 'a', value: 0 }, { type: UPTADD, key: 'a', value: 1 }]],
-  [{ a: 1 }, { a: 1 },
-    [{ type: KEEP, key: 'a', value: 1 }]],
-  [{ a: '1' }, { a: 1 },
-    [{ type: UPTDEL, key: 'a', value: '1' },
-      { type: UPTADD, key: 'a', value: 1 }]],
-  [{ a: '1' }, { a: '1' },
-    [{ type: KEEP, key: 'a', value: '1' }]],
-  [{ a: 0 }, { b: 1 },
-    [{ type: DEL, key: 'a', value: 0 },
-      { type: ADD, key: 'b', value: 1 }]],
-  [{ a: 0, c: 3 }, { b: 1 },
-    [{ type: DEL, key: 'a', value: 0 },
-      { type: ADD, key: 'b', value: 1 },
-      { type: DEL, key: 'c', value: 3 }]],
-  [{ c: { d: 3 } }, { c: 4 },
-    [
-      {
-        type: UPTDEL,
-        key: 'c',
-        value: [{ type: KEEP, key: 'd', value: 3 }],
-      },
-      { type: UPTADD, key: 'c', value: 4 }]],
-  [{ c: 4 }, { c: { d: 4 } },
-    [{ type: UPTDEL, key: 'c', value: 4 },
-      { type: UPTADD, key: 'c', value: [{ type: KEEP, key: 'd', value: 4 }] }]],
-  [{ c: { d: 3 } }, { c: { d: 4 } },
     [{
-      type: KEEP,
-      key: 'c',
-      value: [
-        { type: UPTDEL, key: 'd', value: 3 },
-        { type: UPTADD, key: 'd', value: 4 }],
-    }]],
-  [{ a: 1, c: { d: 3 } }, { c: { d: 4 } },
-    [{ type: DEL, key: 'a', value: 1 },
-      {
+      type: CHANGED, key: 'a', oldValue: 0, newValue: 1,
+    }],
+    [{ a: 1 }, { a: 1 },
+      [{ type: KEEP, key: 'a', value: 1 }]],
+    [{ a: '1' }, { a: 1 },
+      [{
+        type: CHANGED, key: 'a', oldValue: '1', newValue: 1,
+      }]],
+    [{ a: '1' }, { a: '1' },
+      [{ type: KEEP, key: 'a', value: '1' }]],
+    [{ a: 0 }, { b: 1 },
+      [{ type: DEL, key: 'a', value: 0 },
+        { type: ADD, key: 'b', value: 1 }]],
+    [{ a: 0, c: 3 }, { b: 1 },
+      [{ type: DEL, key: 'a', value: 0 },
+        { type: ADD, key: 'b', value: 1 },
+        { type: DEL, key: 'c', value: 3 }]],
+    [{ c: { d: 3 } }, { c: 4 },
+      [
+        {
+          type: CHANGED,
+          key: 'c',
+          oldValue: [{ type: KEEP, key: 'd', value: 3 }],
+          newValue: 4,
+        }]],
+    [{ c: 4 }, { c: { d: 4 } },
+      [{
+        type: CHANGED,
+        key: 'c',
+        oldValue: 4,
+        newValue: [{ type: KEEP, key: 'd', value: 4 },
+        ],
+      }]],
+    [{ c: { d: 3 } }, { c: { d: 4 } },
+      [{
         type: KEEP,
         key: 'c',
         value: [
-          { type: UPTDEL, key: 'd', value: 3 },
-          { type: UPTADD, key: 'd', value: 4 }],
+          {
+            type: CHANGED, key: 'd', oldValue: 3, newValue: 4,
+          }],
       }]],
-  [{ cyber: { d: 3 } }, { avalon: 1, cyber: { d: 4 } },
-    [{ type: ADD, key: 'avalon', value: 1 },
-      {
-        type: KEEP,
-        key: 'cyber',
-        value: [{ type: UPTDEL, key: 'd', value: 3 },
-          { type: UPTADD, key: 'd', value: 4 }],
-      }]],
-];
+    [{ a: 1, c: { d: 3 } }, { c: { d: 4 } },
+      [{ type: DEL, key: 'a', value: 1 },
+        {
+          type: KEEP,
+          key: 'c',
+          value: [{
+            type: CHANGED, key: 'd', oldValue: 3, newValue: 4,
+          }],
+        }]],
+    [{ cyber: { d: 3 } }, { avalon: 1, cyber: { d: 4 } },
+      [{ type: ADD, key: 'avalon', value: 1 },
+        {
+          type: KEEP,
+          key: 'cyber',
+          value: [{
+            type: CHANGED, key: 'd', oldValue: 3, newValue: 4,
+          }],
+        }]],
+  ]];
 
 test.each(generateRezultArrayParams)('compare objects %o and %o', (obj1, obj2, rez) => {
   expect(generateRezultArray(obj1, obj2, '')).toEqual(rez);

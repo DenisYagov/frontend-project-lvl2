@@ -1,9 +1,9 @@
 import {
-  ADD, DEL, UPTADD, UPTDEL, KEEP,
+  ADD, DEL, CHANGED, KEEP,
 } from '../constants.js';
 // preSym represents symbols of { add, del, uptAdd, uptDel, keep } from '../coreComparator.js'
 // it is located at same address offset
-const CoreString = ['was added with value: ', 'was removed', ' to ', 'was updated. From ', ' '];
+const CoreString = ['was added with value: ', 'was removed', 'was updated. From ', ' '];
 
 const ent = String.fromCharCode(10); // enter symbol
 
@@ -20,16 +20,21 @@ const complexValueString = (value) => {
 
 const plainString = (cellArray, PropertyName) => {
   // string in plain format output
-  const currentValue = cellArray.value;
   const currentKey = cellArray.key;
   // in most cases this will be the common starting:
   const startingString = `'${`${PropertyName}.${currentKey}' ${CoreString[cellArray.type]}`.slice(1)}`;
-  const val = complexValueString(currentValue);
   switch (cellArray.type) {
-    case ADD: return `Property ${startingString}${val}${ent}`;
-    case DEL: return `Property ${startingString}${ent}`;
-    case UPTDEL: return `Property ${startingString}${val}`;
-    case UPTADD: return `${CoreString[cellArray.type]}${val}${ent}`;
+    case ADD: {
+      const val = complexValueString(cellArray.value);
+      return `Property ${startingString}${val}${ent}`; }
+    case DEL: {
+      return `Property ${startingString}${ent}`; }
+    case CHANGED: {
+      const oldVal = complexValueString(cellArray.oldValue);
+      const newVal = complexValueString(cellArray.newValue);
+      return `Property ${startingString}${oldVal} to ${newVal}${ent}`;
+    }
+    // case UPTADD: return `${CoreString[cellArray.type]}${val}${ent}`;
     case KEEP: return '';
     default: throw new Error('unexpected situation Error. Incoming type of operation is out of range');
   }

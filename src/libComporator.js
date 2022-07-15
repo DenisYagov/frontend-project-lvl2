@@ -1,7 +1,7 @@
 // Library functions based object comparation
 import _ from 'lodash';
 import {
-  ADD, DEL, UPTADD, UPTDEL, KEEP,
+  ADD, DEL, CHANGED, KEEP,
 } from './constants.js';
 
 // eslint-disable-next-line max-len, no-nested-ternary
@@ -43,8 +43,12 @@ const processCommonArray = (obj1, obj2, acc, inputKey) => {
       return acc;
     }
     // otherwise values are different
-    acc.push({ type: UPTDEL, key: inputKey, value: objKeySort(obj1[inputKey]) });
-    acc.push({ type: UPTADD, key: inputKey, value: objKeySort(obj2[inputKey]) });
+    acc.push({
+      type: CHANGED,
+      key: inputKey,
+      oldValue: objKeySort(obj1[inputKey]),
+      newValue: objKeySort(obj2[inputKey]),
+    });
     return acc;
   }
   // in case obj1[key] and obj2[key] are objects

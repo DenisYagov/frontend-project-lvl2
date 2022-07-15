@@ -1,9 +1,12 @@
+import { CHANGED } from '../constants.js';
+
 const preSym = [
   '/nadded parameter',
   '/ndeleted parameter',
-  '/nnew key: value',
   '/nparameter was updated old key: value',
   '/nparameter was kept'];
+
+//   '/nnew key: value',
 
 const formatOutputValue = (value) => {
   // in case value is pure string return string in quotes
@@ -17,25 +20,36 @@ const formatOutputValue = (value) => {
   return `"${value}"`;
 };
 
-const startingString = (cellArray) => {
-  const currentKey = cellArray.key;
-  const outStr = `"${preSym[cellArray.type]}" "${currentKey}": `;
+const startingString = (sym, currentKey) => {
+  const outStr = `"${sym}" "${currentKey}": `;
   return outStr;
 };
 
-const processJsonString = (inputArray) => {
-// make Stylish format
-  const outStr = inputArray.reduce((acc, cellArray) => {
-    const currentValue = cellArray.value;
-    if (!Array.isArray(currentValue)) {
+const growJsonAcc = (sym, key, currentValue) => {
+  if (!Array.isArray(currentValue)) {
     // we having just a termination
+    // eslint-disable-next-line no-param-reassign
+    return `${startingString(sym, key)}${formatOutputValue(currentValue)},`;
+  }
+  // we having the branch
+  // eslint-disable-next-line no-param-reassign, no-use-before-define
+  return `${startingString(sym, key)}{${processJsonString(currentValue)}}`;
+};
+
+const processJsonString = (inputArray) => {
+// make json format
+  const outStr = inputArray.reduce((acc, cellArray) => {
+    if (cellArray.type === CHANGED) {
+      // CHANGED type requires to generate output string twice
       // eslint-disable-next-line no-param-reassign
-      acc += `${startingString(cellArray)}${formatOutputValue(currentValue)},`;
-    } else {
-    // we having the branch
+      acc += growJsonAcc(preSym[CHANGED], cellArray.key, cellArray.oldValue);
       // eslint-disable-next-line no-param-reassign
-      acc += `${startingString(cellArray)}{${processJsonString(currentValue)}}`;
+      acc += growJsonAcc('/nnew key: value', cellArray.key, cellArray.newValue);
+      return acc;
     }
+    // oterwise generate one time result string
+    // eslint-disable-next-line no-param-reassign
+    acc += growJsonAcc(preSym[cellArray.type], cellArray.key, cellArray.value);
     return acc;
   }, '');
   return outStr;
