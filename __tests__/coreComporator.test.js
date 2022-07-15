@@ -3,7 +3,10 @@
 import { readFileSync } from 'fs';
 import compareFiles from '../src/coreComparator.js';
 import { formatOutputValue } from '../src/formatters/json.js';
-import { generateRezultArray, objKeySort } from '../src/libComporator.js';
+// eslint-disable-next-line import/no-duplicates
+import generateRezultArray from '../src/libComporator.js';
+// eslint-disable-next-line import/no-duplicates
+import { objKeySort } from '../src/libComporator.js';
 import {
   ADD, DEL, UPTADD, UPTDEL, KEEP,
 } from '../src/constants.js';

@@ -78,11 +78,5 @@ const generateRezultArray = (obj1, obj2) => {
   return _.sortBy(outArr, ['key']);
 };
 
-const compareObjects = (obj1, obj2) => {
-  // make out array
-  const outArr = generateRezultArray(obj1, obj2);
-  return outArr;
-};
-
-export default compareObjects;
-export { generateRezultArray, objKeySort };
+export default generateRezultArray;
+export { objKeySort };

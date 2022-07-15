@@ -2,7 +2,8 @@ import { readFileSync } from 'node:fs';
 import { posix } from 'node:path';
 import getObjFromString from './fileParsing.js';
 import makeStringFromArray from './formatters/index.js';
-import compareObjects from './libComporator.js';
+// eslint-disable-next-line import/no-named-as-default
+import generateRezultArray from './libComporator.js';
 
 // const path = require('node:path');
 
@@ -23,7 +24,7 @@ const compareFiles = (file1, file2, format = 'stylish') => {
   const obj1 = getObjectFromFile(file1);
   const obj2 = getObjectFromFile(file2);
 
-  return makeStringFromArray(format, compareObjects(obj1, obj2));
+  return makeStringFromArray(format, generateRezultArray(obj1, obj2));
 };
 
 export default compareFiles;
