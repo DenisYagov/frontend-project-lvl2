@@ -20,7 +20,7 @@ const objKeySort = (obj) => {
     // .sort((a, b) => keySorting(a, b));
   return _.sortBy(outArr, ['key']);
 };
-
+/*
 const processUniqArray = (diffArr, obj, opType) => {
   const outArr = diffArr.map((mapKey) => {
     const outObj = {
@@ -31,6 +31,15 @@ const processUniqArray = (diffArr, obj, opType) => {
     return outObj;
   });
   return outArr;
+};
+*/
+const processUniq = (obj, cKey, opType) => {
+  const outObj = {
+    type: opType,
+    key: cKey,
+    value: objKeySort(obj[cKey]),
+  };
+  return outObj;
 };
 
 const processCommonArray = (obj1, obj2, acc, inputKey) => {
@@ -63,7 +72,7 @@ const processCommonArray = (obj1, obj2, acc, inputKey) => {
   });
   return acc;
 };
-
+/*
 const generateRezultArray = (obj1, obj2) => {
   // find the removed items in flat array
   const tempRemovedArr = _.difference(Object.keys(obj1), Object.keys(obj2));
@@ -79,6 +88,25 @@ const generateRezultArray = (obj1, obj2) => {
   const outArr = _.concat(diffArr, commonArr);
   // sort array by names
   // .sort((a, b) => keySorting(a, b));
+  return _.sortBy(outArr, ['key']);
+};
+*/
+const generateRezultArray = (obj1, obj2) => {
+  const outArr = _.union(Object.keys(obj1), Object.keys(obj2))
+    .reduce((acc, currentKey) => {
+      if ((_.has(obj1, currentKey)) && (_.has(obj2, currentKey))) {
+        // in case both objrcts has same property
+        return processCommonArray(obj1, obj2, acc, currentKey);
+      }
+      if (_.has(obj1, currentKey)) {
+        // property was removed
+        acc.push(processUniq(obj1, currentKey, DEL));
+        return acc;
+      }
+      // finally property was added
+      acc.push(processUniq(obj2, currentKey, ADD));
+      return acc;
+    }, []);
   return _.sortBy(outArr, ['key']);
 };
 
