@@ -20,7 +20,7 @@ const proecssStylishString = (inputArray, deep = '') => {
     // we having just a termination
       acc += `${preString}${currentCellValue}${ent}`;
     } else {
-      acc += `${preString}{${ent}${proecssStylishString(currentCellValue, makeOffset(deep))}${makeOffset(deep)}}${ent}`;
+      acc += `${preString}{${ent}${proecssStylishString(currentCellValue, makeOffset(deep))}${deep}}${ent}`;
     }
     return acc;
   }, '');
