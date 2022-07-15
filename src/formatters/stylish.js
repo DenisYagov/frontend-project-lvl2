@@ -7,7 +7,7 @@ const preSym = ['+', '-', '+', '-', ' '];
 const ent = String.fromCharCode(10); // enter symbol
 
 const makeOffset = (offset) => {
-  const outStr = `${offset}  `;
+  const outStr = `${offset}${String.fromCharCode(9)}`;
   return outStr;
 };
 

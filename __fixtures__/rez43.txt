@@ -5,25 +5,25 @@
     setting4: blah blah
     setting5: {
       key5: value5
-  }
+    }
     setting6: {
       doge: {
         wow: so much
-    }
+      }
       key: value
       ops: vops
+    }
   }
-}
   group1: {
     baz: bars
     foo: bar
     nest: str
-}
+  }
   group3: {
     deep: {
       id: {
         number: 45
+      }
     }
-  }
     fee: 100500
-}
+  }
