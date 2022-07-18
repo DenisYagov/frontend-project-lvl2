@@ -147,7 +147,7 @@ const formatOutputValueParams = [
 test.each(formatOutputValueParams)('formatOutputValue input = %s', (input, expexted) => {
   expect(formatOutputValue(input)).toBe(expexted);
 });
-
+/*
 const comparationParams = [
   [f7, f8, 'rez42.txt'],
   [f8, f7, 'rez41.txt'],
@@ -170,3 +170,4 @@ test.each(comparationParams)('compare multylevel multyformat files %s, %s', asyn
   const rez1 = readFileSync(`./__fixtures__/${eqFile}`).toString();
   expect(compareFiles(file1, file2, f)).toBe(rez1);
 });
+*/
