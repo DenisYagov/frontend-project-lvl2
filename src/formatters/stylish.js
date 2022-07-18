@@ -11,7 +11,7 @@ const ent = '\n'; // enter symbol
 
 const makeOffset = (offset) => {
   // const outStr = `${offset}${String.fromCharCode(9)}`;
-  const outStr = `${offset}  `;
+  const outStr = `${offset}    `;
   return outStr;
 };
 
