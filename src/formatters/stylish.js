@@ -6,7 +6,8 @@ import { ADD, CHANGED, DEL } from '../constants.js';
 // it is located at same address offset
 const preSym = ['+', '-', '', ' '];
 
-const ent = String.fromCharCode(10); // enter symbol
+// const ent = String.fromCharCode(10); // enter symbol
+const ent = '\n'; // enter symbol
 
 const makeOffset = (offset) => {
   // const outStr = `${offset}${String.fromCharCode(9)}`;
