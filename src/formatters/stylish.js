@@ -17,7 +17,7 @@ const makeOffset = (offset) => {
 
 const genString = (deep, Sign, currentCellKey, currentCellValue) => {
   // const preString = `${deep}${Sign} ${currentCellKey}: `;
-  const preString = `${deep} ${Sign} ${currentCellKey}: `;
+  const preString = `${deep}  ${Sign} ${currentCellKey}: `;
   if (!Array.isArray(currentCellValue)) {
     // we having just a termination
     return `${preString}${currentCellValue}${ent}`;
