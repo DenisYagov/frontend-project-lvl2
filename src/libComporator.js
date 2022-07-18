@@ -20,19 +20,7 @@ const objKeySort = (obj) => {
     // .sort((a, b) => keySorting(a, b));
   return _.sortBy(outArr, ['key']);
 };
-/*
-const processUniqArray = (diffArr, obj, opType) => {
-  const outArr = diffArr.map((mapKey) => {
-    const outObj = {
-      type: opType,
-      key: mapKey,
-      value: objKeySort(obj[mapKey]),
-    };
-    return outObj;
-  });
-  return outArr;
-};
-*/
+
 const processUniq = (obj, cKey, opType) => {
   const outObj = {
     type: opType,
@@ -72,25 +60,7 @@ const processCommonArray = (obj1, obj2, acc, inputKey) => {
   });
   return acc;
 };
-/*
-const generateRezultArray = (obj1, obj2) => {
-  // find the removed items in flat array
-  const tempRemovedArr = _.difference(Object.keys(obj1), Object.keys(obj2));
-  const removedArr = processUniqArray(tempRemovedArr, obj1, DEL);
-  // find the added items in flat array
-  const tempAddedArr = _.difference(Object.keys(obj2), Object.keys(obj1));
-  const addedArr = processUniqArray(tempAddedArr, obj2, ADD);
-  // find the common items in flat array
-  const diffArr = _.concat(removedArr, addedArr);
-  const tempDiffArr = _.concat(tempRemovedArr, tempAddedArr);
-  const commonArr = _.difference(Object.keys(obj1), tempDiffArr)
-    .reduce((acc, key) => processCommonArray(obj1, obj2, acc, key), []);
-  const outArr = _.concat(diffArr, commonArr);
-  // sort array by names
-  // .sort((a, b) => keySorting(a, b));
-  return _.sortBy(outArr, ['key']);
-};
-*/
+
 const generateRezultArray = (obj1, obj2) => {
   const outArr = _.union(Object.keys(obj1), Object.keys(obj2))
     .reduce((acc, currentKey) => {
