@@ -11,10 +11,10 @@ import {
 } from '../src/constants.js';
 
 // processing files:
-const f7 = '/__fixtures__/fileBefore1.json';
-const f8 = '/__fixtures__/fileBefore2.json';
-const f9 = '/__fixtures__/fileBefore1.yaml';
-const f10 = '/__fixtures__/fileBefore2.yaml';
+const f7 = './__fixtures__/fileBefore1.json';
+const f8 = './__fixtures__/fileBefore2.json';
+const f9 = './__fixtures__/fileBefore1.yaml';
+const f10 = './__fixtures__/fileBefore2.yaml';
 
 const objKeySortParams = [
   [{ c: 0 }, [{ type: KEEP, key: 'c', value: 0 }]],
