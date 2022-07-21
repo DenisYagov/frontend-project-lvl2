@@ -13,7 +13,8 @@ const getObjectFromFile = (inputFile) => {
   const file = posix.resolve(inputFile);
   // get extention of the file
   const fileExt = posix.extname(file).slice(1);
-  const dataStr = readFileSync(file);
+  // const dataStr = readFileSync(file);
+  const dataStr = readFileSync(inputFile);
   return parcingFromString(dataStr, fileExt);
 };
 
