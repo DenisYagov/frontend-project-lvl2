@@ -11,10 +11,10 @@ import {
 } from '../src/constants.js';
 
 // processing files:
-const f7 = './__fixtures__/file7.json';
-const f8 = './__fixtures__/file8.json';
-const f9 = './__fixtures__/file9.yaml';
-const f10 = './__fixtures__/file10.yaml';
+const f7 = './__fixtures__/fileBefore1.json';
+const f8 = './__fixtures__/fileBefore2.json';
+const f9 = './__fixtures__/fileBefore1.yaml';
+const f10 = './__fixtures__/fileBefore2.yaml';
 
 const objKeySortParams = [
   [{ c: 0 }, [{ type: KEEP, key: 'c', value: 0 }]],
@@ -136,21 +136,21 @@ test.each(generateRezultArrayParams)('compare objects %o and %o', (obj1, obj2, r
 });
 
 const comparationParams = [
-  [f7, f8, 'rez42.txt'],
-  [f8, f7, 'rez41.txt'],
-  [f9, f10, 'rez42.txt'],
-  [f10, f9, 'rez41.txt'],
-  [f8, f8, 'rez43.txt'],
-  [f10, f10, 'rez43.txt'],
-  [f10, f8, 'rez43.txt'],
-  [f7, f8, 'rez42.txt', 'stylish'],
-  [f8, f7, 'rez41.txt', 'stylish'],
-  [f9, f10, 'rez42.txt', 'stylish'],
-  [f8, f8, 'rez43.txt', 'stylish'],
-  [f7, f8, 'rez51.txt', 'plain'],
-  [f8, f7, 'rez52.txt', 'plain'],
-  [f7, f8, 'rez53.txt', 'json'],
-  [f8, f7, 'rez54.txt', 'json'],
+  [f7, f8, 'fileAfter1_2.txt'],
+  [f8, f7, 'fileAfter1_1.txt'],
+  [f9, f10, 'fileAfter1_4.txt'],
+  [f10, f9, 'fileAfter1_5.txt'],
+  [f8, f8, 'fileAfter1_3.txt'],
+  [f10, f10, 'fileAfter1_3.txt'],
+  [f10, f8, 'fileAfter1_3.txt'],
+  [f7, f8, 'fileAfter1_2.txt', 'stylish'],
+  [f8, f7, 'fileAfter1_1.txt', 'stylish'],
+  [f9, f10, 'fileAfter1_4.txt', 'stylish'],
+  [f8, f8, 'fileAfter1_3.txt', 'stylish'],
+  [f7, f8, 'fileAfter2_1.txt', 'plain'],
+  [f8, f7, 'fileAfter2_2.txt', 'plain'],
+  [f7, f8, 'fileAfter3_1.txt', 'json'],
+  [f8, f7, 'fileAfter3_2.txt', 'json'],
 ];
 
 test.each(comparationParams)('compare multylevel multyformat files %s, %s', async (file1, file2, eqFile, f = '') => {
