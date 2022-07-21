@@ -2,7 +2,6 @@
 /* eslint-disable max-len */
 import { readFileSync } from 'fs';
 import compareFiles from '../src/coreComparator.js';
-import { formatOutputValue } from '../src/formatters/json.js';
 // eslint-disable-next-line import/no-duplicates
 import generateRezultArray from '../src/libComporator.js';
 // eslint-disable-next-line import/no-duplicates
@@ -134,18 +133,6 @@ const generateRezultArrayParams = [
 
 test.each(generateRezultArrayParams)('compare objects %o and %o', (obj1, obj2, rez) => {
   expect(generateRezultArray(obj1, obj2, '')).toEqual(rez);
-});
-
-const formatOutputValueParams = [
-  ['', '""'],
-  ['null', null],
-  [null, null],
-  [57, 57],
-  ['val', '"val"'],
-];
-
-test.each(formatOutputValueParams)('formatOutputValue input = %s', (input, expexted) => {
-  expect(formatOutputValue(input)).toBe(expexted);
 });
 
 const comparationParams = [
