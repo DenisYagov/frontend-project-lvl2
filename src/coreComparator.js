@@ -13,7 +13,7 @@ const getObjectFromFile = (inputFilePath) => {
   // make absolut path from any type of input
   // const absolutFilePath = posix.resolve(inputFilePath);
   const absolutFilePath = path.resolve(process.cwd(), inputFilePath);
-  console.log(' absolutFilePath = ', absolutFilePath);
+  // console.log(' absolutFilePath = ', absolutFilePath);
   // get extention of the file
   const fileExt = posix.extname(absolutFilePath).slice(1);
   const dataStr = readFileSync(absolutFilePath, 'utf-8');

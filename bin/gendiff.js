@@ -9,15 +9,16 @@ const program = new Command();
 program
   .name('gendiff')
   .usage('[options] <filepath1> <filepath2>')
-  .argument('[type]', 'type of comparing files')
+  .arguments('<filepath1> <filepath2>')
   .description('Compares two configuration files and shows a difference')
   .option('-V, --version', 'output the version')
   .option('-f, --format <type>', `output format (default: "${defFormat}")`)
   .option('-h, --help', 'display help for command')
 
-  .action(() => {
+  .action((filepath1, filepath2) => {
+    // console.log('program = ', program);
     // eslint-disable-next-line no-underscore-dangle
-    const diff = compareFiles(program.args[0], program.args[1], program._optionValues.format);
+    const diff = compareFiles(filepath1, filepath2, program._optionValues.format);
     console.log(diff);
   });
 /*
