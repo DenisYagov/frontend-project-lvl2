@@ -14,12 +14,12 @@ program
   .option('-V, --version', 'output the version')
   .option('-f, --format <type>', `output format (default: "${defFormat}")`)
   .option('-h, --help', 'display help for command')
-
+/*
   .action((filepath1, filepath2) => {
     const diff = compareFiles(filepath1, filepath2, Command.format);
     console.log(diff);
   });
-/*
+*/
   .action((fileName1, lineOptions, rawData) => {
   // compare files based on input raw data
     // eslint-disable-next-line no-underscore-dangle
@@ -27,5 +27,5 @@ program
     // in case no input files return null
     (outStr.length !== 0) ? console.log(outStr) : 'files fully compatible';
   });
-*/
+
 program.parse();
