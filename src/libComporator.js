@@ -30,53 +30,51 @@ const processUniq = (obj, cKey, opType) => {
   return outObj;
 };
 
-const processCommonArray = (obj1, obj2, acc, inputKey) => {
+const processCommon = (obj1, obj2, inputKey) => {
   if (!_.isObject(obj1[inputKey]) || (!_.isObject(obj2[inputKey]))) {
     const outObj1 = {};
     outObj1[`${inputKey}`] = objKeySort(obj1[inputKey]);
     // in case values are same
     if (obj1[inputKey] === obj2[inputKey]) {
-      acc.push({ type: KEEP, key: inputKey, value: obj1[inputKey] });
-      return acc;
+      return { type: KEEP, key: inputKey, value: obj1[inputKey] };
     }
     // otherwise values are different
-    acc.push({
+    return {
       type: CHANGED,
       key: inputKey,
       oldValue: objKeySort(obj1[inputKey]),
       newValue: objKeySort(obj2[inputKey]),
-    });
-    return acc;
+    };
   }
   // in case obj1[key] and obj2[key] are objects
-  const outObj1 = {};
-  // eslint-disable-next-line no-use-before-define
-  outObj1[`${inputKey}`] = generateRezultArray(obj1[inputKey], obj2[inputKey]);
-  acc.push({
+  return {
     type: KEEP,
     key: inputKey,
     // eslint-disable-next-line no-use-before-define
     value: generateRezultArray(obj1[inputKey], obj2[inputKey]),
-  });
-  return acc;
+  };
 };
+
+const isPresent = (obj, key) => Object.keys(obj).filter((cellKey) => (cellKey === key)).length;
 
 const generateRezultArray = (obj1, obj2) => {
   const outArr = _.union(Object.keys(obj1), Object.keys(obj2))
-    .reduce((acc, currentKey) => {
-      if ((_.has(obj1, currentKey)) && (_.has(obj2, currentKey))) {
-        // in case both objrcts has same property
-        return processCommonArray(obj1, obj2, acc, currentKey);
+    .map((cell) => {
+      const presentanceCase = isPresent(obj1, cell) + (2 * isPresent(obj2, cell));
+      switch (presentanceCase) {
+        case (1):
+          // deleted
+          return processUniq(obj1, cell, DEL);
+        case (2):
+          // added
+          return processUniq(obj2, cell, ADD);
+        case (3):
+          // modified or kept
+          return processCommon(obj1, obj2, cell);
+        default:
+          throw new Error('Ooops! cell = ', cell, ' obj1 = ', obj1, ' obj2 = ', obj2);
       }
-      if (_.has(obj1, currentKey)) {
-        // property was removed
-        acc.push(processUniq(obj1, currentKey, DEL));
-        return acc;
-      }
-      // finally property was added
-      acc.push(processUniq(obj2, currentKey, ADD));
-      return acc;
-    }, []);
+    });
   return _.sortBy(outArr, ['key']);
 };
 
