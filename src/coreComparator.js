@@ -15,7 +15,7 @@ const getObjectFromFile = (inputFilePath) => {
   // path.resolve(process.cwd(), filePath)
   // get extention of the file
   const fileExt = posix.extname(absolutFilePath).slice(1);
-  const dataStr = readFileSync(absolutFilePath);
+  const dataStr = readFileSync(absolutFilePath, 'utf-8');
   // const dataStr = readFileSync(inputFilePath);
   return parcingFromString(dataStr, fileExt);
 };
